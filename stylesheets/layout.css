@@ -1,0 +1,462 @@
+/* @group 通用
+============================================================ */
+
+/* @group 重设
+------------------------------------------------------------ */
+
+/* 基础重设*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;/*外边距*/
+	padding: 0;/*内边距*/
+	border: 0px;/*边框*/                                                                                           /*修改*/
+  	border-style: solid;                                                                                           /*新增*/
+	outline: 0;/*轮廓*/
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+/* @group 圆角 rounded corners
+---------------------------------------------------------*/
+#sidebar .box ul.nav,
+#content .entry.without-picture .post-bar,
+#comments .comment-dom,
+textarea,button{
+	-maz-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius: 5px !important;
+}
+
+/* 上圆角*/
+#header ul.nav li ul li:first-child a,
+#content .entry .post-box .rounded-img{
+	-maz-border-radius:5px 5px 0 0;
+	-webkit-border-radius:5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+
+/* 下圆角*/
+#header ul.nav li ul li:last-child a,
+#content .entry .post-bar{
+	-maz-border-radius:0 0 5px 5px;
+	-webkit-border-radius:0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
+/* 左圆角*/
+#content .paginator a.first{
+	-maz-border-radius:5px 0 0 5px;
+	-webkit-border-radius:5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+/*右圆角*/
+#content .paginator a.last{
+	-maz-border-radius:0 5px 5px 0;
+	-webkit-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+/*取消二级子菜单连接处圆角*/
+#header ul.nav li ul li ul li:first-child a{
+	-maz-border-radius-topleft:0;
+	-webkit-border-top-left-radius:0;
+	border-top-left-radius: 0;
+}
+/*左侧下拉二级子菜单圆角配置*/
+#header ul.nav li.right ul li ul li:first-child a{
+	-maz-border-radius-topleft:5px;
+	-webkit-border-top-left-radius:5px;
+	border-top-left-radius: 5px;
+	-maz-border-radius-topright:0;
+	-webkit-border-top-right-radius:0;
+	border-top-right-radius: 0;
+}
+
+/* @group 默认容器布局
+==========================================================*/
+/* wrapper
+-----------------------------------------------------------*/
+.wrapper{
+	display: block;
+	width: 940px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+/* @group 顶部容器header
+-----------------------------------------------------------*/
+#header{height: 119px;overflow: hidden;}
+#header .wrapper{overflow: visible;}
+
+/*..............logo..............*/
+#header #logo{float: left;}
+#header #logo h2{
+	text-indent: -9999px;
+	margin: 15px 30px 15px 0;
+	padding: 0;
+
+}
+#header #logo h2 a{
+	background-repeat: no-repeat;
+	display: block;
+	height: 119px;
+	width: 89px;
+}
+/*..............head-info...........*/
+#header #head-info{
+	float: left;
+	max-width: 250px !important;
+	height: 119px;
+	padding-top: 15px;
+}
+#header #head-info #blog-name{margin-bottom: 12px;}
+#header #head-info #blog-name a{
+	overflow: hidden;
+	display: block;
+	height: 40px;/*应确保能容纳两行*/
+
+}
+#header #head-info #counter{}
+#header #head-info #counter span{
+
+	margin: 0;
+}
+/*.............Navigation...............*/
+#header ul.nav{
+	float: right;
+	list-style: none;
+	padding: 0;
+	margin: 22px -15px 0 0;
+}
+#header ul.nav li{
+	background-position:center top;
+	background-repeat: repeat-x;
+	float: left;
+	padding: 0 15px 10px 0;
+	margin: 0;
+}
+
+#header ul.nav li.first{
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 40px;
+}
+#header ul.nav li.last{
+	background-position: right top;
+	background-repeat: no-repeat;
+	padding-right: 40px;
+}
+#header ul.nav li a{
+	display: block;
+	margin-top: 16px;
+	padding: 10px;
+}
+/* Superfish Auto-Arrows 隐藏为顶层节点添加的Arrows*/
+
+#header ul.nav li a .sf-sub-indicator {
+  display: none !important;
+}
+
+#header ul.nav li ul li a .sf-sub-indicator {
+  display: inline !important;
+}
+/*Dropdown Menu*/
+#header ul.nav li ul{
+	background-position: 20px top;
+	background-repeat: no-repeat;
+	list-style: none;
+	position: absolute;
+	margin-top: -6px;
+	padding: 5px 0 0 0;
+	z-index: 101;
+}
+#header ul.nav li ul li{
+	background-image: none;
+	float: none;
+	padding: 0;
+	position: relative;
+}
+#header ul.nav li ul li a{
+	border: 1px solid;
+	border-bottom: none;
+	height: auto;
+	opacity: .9;
+	width: 150px;
+	margin: 0;
+	padding: 8px 8px;
+}
+#header ul.nav li ul li:last-child a{
+	border-bottom:  1px solid;
+}
+#header ul.nav li ul li ul{
+	background: none;
+	padding-top:0;
+	left: 100%; 
+	margin-left: -1px;
+	top: 0;
+	margin-top: 0px;
+}
+/*Dropdown Hover*/
+#header ul.nav li ul,
+#header ul.nav li:hover ul li ul {display: none;}
+
+#header ul.nav li:hover ul,
+#header ul.nav li ul li:hover ul{display: block;}
+/*Drop on the left*/
+#header ul.nav li.right ul li ul{left: -166px;padding: 0;}
+
+/* @group 上信息栏topbar
+---------------------------------------------------------*/
+#topbar{height: auto;overflow: hidden;}
+#topbar #top-info{
+	padding: 5px 0 5px 0;
+}
+/* @group 主容器main
+-----------------------------------------------------------*/
+#main{
+	position:relative;
+	overflow:hidden;
+	padding-top: 45px;
+}
+/*........................Content.....................*/
+#content{
+	float: left;
+	overflow: hidden;
+	width: 610px;
+}
+#content .entry{
+	overflow: hidden;
+	clear: both;
+	padding-bottom: 20px;
+}
+/*post-box*/
+#content .entry .post-box{
+	padding-top: 5px;
+	padding-bottom: 0;
+	margin: 0;
+}
+
+.post-box a img{
+	display: block;
+	margin-bottom: 0; 
+	padding: 0;
+	position: relative;
+	z-index: 2;
+}
+
+.post-box span.prettyPhoto-image{
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 1;
+}
+
+.post-bar{
+	position: relative;
+	font-size: 13px !important;
+	overflow: hidden;
+	margin-top:-0px;
+	padding-top: 0px;
+}
+.post-bar span{
+	padding: 3px 6px;
+}
+
+.post-bar span.time,
+.post-bar span.author{
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	float: left;
+}
+
+.post-bar span.time {background-position: 3px 5px;}
+.post-bar span.author{background-position: 3px -25px;}
+
+.post-bar span.i-comment,
+.post-bar span.i-forward,
+.post-bar span.i-recommend,
+.post-bar span.i-report,
+.post-bar span.i-sign{
+	background-repeat: no-repeat;
+	width: 20px;
+	float: right;
+}
+
+.post-bar span.i-comment a{text-indent: -999px;background-position: 3px -57px;}
+.post-bar span.i-forward a{text-indent: -9999px;background-position: 3px -87px;}
+.post-bar span.i-recommend a{text-indent: -9999px;background-position: 3px -117px;}
+.post-bar span.i-report a{text-indent: -9999px;background-position: 3px -207px;}
+.post-bar span.i-sign a{text-indent: -9999px;background-position: 3px -177px;}
+
+.post-bar span a{
+	display: block;
+	text-decoration: none;
+}
+.post-bar span a:hover{
+	opacity: 0.8;
+	text-decoration: underline;
+}
+
+
+.post-data{padding-top: 10px;}
+
+.post-data p{
+	line-height: 170%;
+}
+.post-data span.read-more {
+	display: block;
+	padding-top: 5px;
+	font-size: 12px;
+}
+/*分页处理*/
+.paginator{
+	display: block;
+	overflow: hidden;
+	margin: 15px 0 65px;
+}
+
+.paginator a{
+	padding: 5px 12px;
+	display: block;
+	font-size: 80%;
+	float: left;
+	background-position: center top;
+}
+.paginator a.first{background-position: right top;}
+.paginator a.last{background-position: left top;}
+/*评论与回复.................*/
+#content #comments{
+	padding: 35px 0;
+	overflow: hidden;
+}
+#comments .comment-list{
+	margin:20px 0 30px 0;
+}
+#comments .comment-dom{
+	clear: both;
+	list-style: none;
+	margin-bottom: 10px;
+	padding: 20px;
+	overflow: hidden;
+}
+#comments .comment-dom .comment{
+	display: block;
+	overflow: hidden;
+}
+#comments .comment .gravatar{
+	float: left;
+	overflow: hidden;
+	width: 70px;
+	text-align: center;
+	margin-right: 20px;
+}
+
+#comments .comment .gravatar img{width: 70px;height: 70px;}
+
+#comments .comment .content{
+	float: right;
+	display: block;
+	width: 476px;
+}
+#comments .comment .content .comment-info{
+	margin-bottom: 10px;
+}
+
+#comments .comment .content .comment-info .target{display: none;}
+
+#comments .comment .content .text{display: block;}
+/*回复*/
+#comments .reply{overflow: hidden;text-align: right;}
+#comments .reply .reply-panel{
+	overflow: hidden;
+	text-align: right;
+	width: 100%;
+}
+#comments .reply .reply-text{
+	resize:none;
+	overflow: auto;
+	height: 120px;
+	width: 99%;
+}
+#comments .reply button{
+	*margin-top: 10px;/*IE fix*/
+	padding: 2px 10px;
+}
+
+#comments .comment-dom .reply .reply-button{
+	display: block;
+	overflow: hidden;
+}
+#comments .comment-dom .reply .reply-panel{
+	margin-top: 5px;
+	display: none;
+}
+#comments .comment-dom .reply .reply-text{
+	width: 98%;
+}
+
+
+
+/*评论嵌套*/
+#comments .comment-list .comment-list{margin:10px 0 0 0;}
+
+#comments .comment-dom .comment-dom .gravatar{width: 49px;}
+#comments .comment-dom .comment-dom .gravatar img{width: 49px;height: 49px;}
+
+#comments .comment-dom .comment-dom .content{width: 453px;}
+#comments .comment-dom .comment-dom .content .comment-info .target{display: inline-block;}
+
+
+/*........................Sidebar.....................*/
+#sidebar{
+	float: right;
+	width: 280px;
+}
+#sidebar h3{
+	margin-bottom: 22px;
+	padding: 0;
+}
+
+#sidebar .box{
+	margin-bottom: 35px;
+}
+/* Navigation for box */
+#sidebar .box ul.nav{
+	overflow: hidden;
+	*border-bottom: none;/*ie7 FIX*/
+}
+#sidebar .box  ul.nav{
+	list-style: none;
+}
+/*#sidebar .box .nav ul li{padding-left: 0;}*/
+#sidebar .box ul.nav li a{
+	background-position: 12px 16px;
+	background-repeat: no-repeat;
+	display: block;
+	padding: 9px 10px 9px 24px;
+	text-decoration: none;
+}
+#sidebar .box ul.nav li ul li a{
+	margin:0;
+	background-position: 1.8em 17px;
+	padding-left: 2.5em;
+}
+/* @group 下信息栏bottombar
+-----------------------------------------------------------*/
+#bottombar{}
+/* @group 底部容器footer
+----------------------------------------------------------*/
+#footer{
+	height: 30px;
+}
+
+
+/* @grop body操作
+==========================================================*/ 
+body.no_topbar #topbar{display: none;}
+body.no_nav #header ul.nav{display:none;}
