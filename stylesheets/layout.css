@@ -76,7 +76,29 @@ textarea,button{
 	-webkit-border-top-right-radius:0;
 	border-top-right-radius: 0;
 }
-
+/*@group inline-block 浏览器兼容性修复
+--------------------------------------------------*/
+.dib-wrap {
+ font-size:0;/* 所有浏览器 */
+ *word-spacing:-1px;/* IE6、7 */
+ }
+ .dib-wrap .dib{
+ font-size: 12px;
+ letter-spacing: normal;
+ word-spacing: normal;
+ vertical-align:top;
+ }
+ @media screen and (-webkit-min-device-pixel-ratio:0){
+ /* firefox 中 letter-spacing 会导致脱离普通流的元素水平位移 */
+	 .dib-wrap{
+	 letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器, N 根据父级字体调节*/
+	 }
+ }
+ .dib {
+ display: inline-block;
+ *display:inline;
+ *zoom:1;
+ }
 /* @group 默认容器布局
 ==========================================================*/
 /* wrapper
@@ -98,14 +120,16 @@ textarea,button{
 	text-indent: -9999px;
 	margin: 15px 30px 15px 0;
 	padding: 0;
-
+	display: block;
 }
 #header #logo h2 a{
 	background-repeat: no-repeat;
 	display: block;
-	height: 119px;
+	border: 2px solid transparent;
+	height: 89px;
 	width: 89px;
 }
+
 /*..............head-info...........*/
 #header #head-info{
 	float: left;
@@ -113,18 +137,16 @@ textarea,button{
 	height: 119px;
 	padding-top: 15px;
 }
-#header #head-info #blog-name{margin-bottom: 12px;}
-#header #head-info #blog-name a{
-	overflow: hidden;
-	display: block;
+#header #head-info #blog-name{
 	height: 40px;/*应确保能容纳两行*/
-
+	margin-bottom: 12px;	
+	overflow: hidden;
 }
-#header #head-info #counter{}
-#header #head-info #counter span{
-
-	margin: 0;
+#header #head-info #blog-name a{display: block;}
+#header #head-info #blog-name a:hover{
+	text-decoration: underline;
 }
+
 /*.............Navigation...............*/
 #header ul.nav{
 	float: right;
@@ -221,6 +243,7 @@ textarea,button{
 	position:relative;
 	overflow:hidden;
 	padding-top: 45px;
+	height: 1000px;
 }
 /*........................Content.....................*/
 #content{
@@ -228,12 +251,13 @@ textarea,button{
 	overflow: hidden;
 	width: 610px;
 }
+
 #content .entry{
 	overflow: hidden;
 	clear: both;
 	padding-bottom: 20px;
 }
-/*post-box*/
+/*post-box---------------------------*/
 #content .entry .post-box{
 	padding-top: 5px;
 	padding-bottom: 0;
@@ -313,7 +337,7 @@ textarea,button{
 	padding-top: 5px;
 	font-size: 12px;
 }
-/*分页处理*/
+/*分页处理------------------------*/
 .paginator{
 	display: block;
 	overflow: hidden;
@@ -329,7 +353,7 @@ textarea,button{
 }
 .paginator a.first{background-position: right top;}
 .paginator a.last{background-position: left top;}
-/*评论与回复.................*/
+/*评论与回复-----------------------*/
 #content #comments{
 	padding: 35px 0;
 	overflow: hidden;
@@ -400,8 +424,6 @@ textarea,button{
 	width: 98%;
 }
 
-
-
 /*评论嵌套*/
 #comments .comment-list .comment-list{margin:10px 0 0 0;}
 
@@ -410,7 +432,82 @@ textarea,button{
 
 #comments .comment-dom .comment-dom .content{width: 453px;}
 #comments .comment-dom .comment-dom .content .comment-info .target{display: inline-block;}
+/*user-info-------------------*/
+#user-info #base-info{
+	text-align: center;
+	float: left;
+	width: 40%;
+	padding-right: 25px;
+	border-right: 1px solid transparent;
+}
+#base-info .gravatar{
+	/*float: left;*/
+	overflow: hidden;
+	width: 80px;
+	text-align: center;
+	margin:0 auto;
+	/*display: inline-block;*/
+}
+#base-info .logo{
+	width: 78px;height: 78px;
+	line-height: 78px;/*该值设置与height一致保持纵向居中*/
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid transparent;
+}
 
+#base-info .logo .cover{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	left: 0;top: 0;
+	position: absolute;
+	z-index: 2;
+	filter: alpha(opacity=0);/*IE fix*/
+}
+#base-info .logo .cover:hover{opacity:0.6;filter: alpha(opacity=60);}
+#base-info .logo .covered{
+	width: 100%;
+	height: 100%;
+	left: 0;top: 0;
+	position: absolute;
+	z-index: 0;
+}
+#user-info #base-info .recode{
+	padding: 15px 0;
+	margin: 10px 0;
+	overflow: none;
+}
+#base-info .recode div{
+	padding:0 15px;
+	margin: 0 auto;	
+	border-right: 1px solid transparent;
+	border-left: 1px solid transparent;
+}
+
+#base-info .recode .item{
+	font-size: 16px;
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+#base-info .recode span{font-size: 18px;}
+#base-info .recode .first{border-left: none;}
+#base-info .recode .last{border-right: none;}
+
+#base-info .operation{
+	/*text-align: left;*/
+	margin: 15px 0;
+	/*display: inline-block;*/
+	/*width: 100px;*/
+	/*float: left;*/
+}
+#base-info .operation span{
+	/*display: block;*/
+	font-size: 14px;
+	padding: 0 10px;
+	margin:1px 0;
+}
 
 /*........................Sidebar.....................*/
 #sidebar{
@@ -456,7 +553,12 @@ textarea,button{
 }
 
 
-/* @grop body操作
+/* @grop style
 ==========================================================*/ 
+/* no-topbar--------------------------------------------*/
 body.no_topbar #topbar{display: none;}
+/* no-nav-----------------------------------------------*/
 body.no_nav #header ul.nav{display:none;}
+/* no-sidebar-------------------------------------------*/
+body.no-sidebar #sidebar{display: none;}
+body.no-sidebar #content{width: 100%;}

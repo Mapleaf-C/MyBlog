@@ -9,6 +9,35 @@ h2 { font-size: 30px; line-height: 38px; margin-bottom: 10px;font-weight: normal
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   display: inline-block;
 }
+
+button{
+	color: #666;
+	outline: none;
+	border: 1px solid #c2c2c2;
+	background: #e7e7e7 url(../../images/layout/shared/metal-gradient.jpg) repeat-x;
+	box-shadow: 0 1px 1px #ccc;
+	-moz-box-shadow:0 1px 1px #ccc;
+	-webkit-box-shadow:0 1px 1px #ccc;
+}
+
+button:hover{
+	color: #333;
+	border: 1px solid #888;
+	background: #e7e7e7 url(../../images/layout/shared/metal-gradient.jpg) repeat-x;
+	box-shadow: 0 1px 1px #aaa;
+	-moz-box-shadow:0 1px 1px #aaa;
+	-webkit-box-shadow:0 1px 1px #aaa;
+}
+
+button:active{
+	border: 1px solid #888;
+	box-shadow: none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+	box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
+ 	-moz-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
+ 	-webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
+};
 /* @group header 顶部容器
 ===========================================================*/
 /*font */
@@ -137,31 +166,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 	border:1px solid rgb(169,169,169);
 }
 
-#comments .reply button{
-	color: #666;
-	outline: none;
-	border: 1px solid #c2c2c2;
-	background: #e7e7e7 url(../../images/layout/shared/metal-gradient.jpg) repeat-x;
-	box-shadow: 0 1px 1px #ccc;
-	-moz-box-shadow:0 1px 1px #ccc;
-	-webkit-box-shadow:0 1px 1px #ccc;
+#user-info #base-info .recode div{
+	border-right-color:#c2c2c2;
+	border-left-color:white;
 }
-
-#comments .reply button:hover{
-	color: #333;
-	border: 1px solid #888;
-	background: #e7e7e7 url(../../images/layout/shared/metal-gradient.jpg) repeat-x;
-	box-shadow: 0 1px 1px #aaa;
-	-moz-box-shadow:0 1px 1px #aaa;
-	-webkit-box-shadow:0 1px 1px #aaa;
-}
-
-#comments .reply button:active{
-	border: 1px solid #888;
-	box-shadow: none;
-	-moz-box-shadow:none;
-	-webkit-box-shadow:none;
-	box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
- 	-moz-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
- 	-webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
-};

@@ -6,7 +6,15 @@ body,body #body-wrapper{background-color:black;}
 
 a       { color: black; }
 a:hover { color: #666; }
-
+/*淡蓝*/
+#header #logo h2 a:hover{
+	border-color: #4183c4;
+}
+#header #head-info #blog-name a:hover{
+	color: #4183c4;
+	/*color: #84cfff;*/
+	/*color: #1992fc;*/
+}
 /*#header ul.nav li a,#footer,#footer .button{color:fff;}*/
 
 /* @group header 顶部容器
@@ -29,12 +37,13 @@ a:hover { color: #666; }
 	background: url(../../images/layout/default/black/head.png) repeat-x;
 }
 #header #logo h2 a {
-  background-image: url(../../images/layout/default/black/logo.gif);
+  	background-image: url(../../images/layout/default/black/logo.gif);
 }
+
 /* Navigation */
 
 #header ul.nav li {
-  background-image: url(../../images/layout/default/black/nav_bg.png);
+  	background-image: url(../../images/layout/default/black/nav_bg.png);
 }
 
 /* Dropdown Menu */
@@ -81,13 +90,20 @@ a:hover { color: #666; }
 }
 
 #comments .comment-dom{background: white;}
-#comments .comment-dom{	border: 1px solid #cfcfcf;}
+#comments .comment-dom{border: 1px solid #cfcfcf;}
 
 #comments .comment .comment-info .time{color: #666;}
 #comments .comment .content .text{color: #333;}
 
 #comments .reply .reply-button a{color: #bbb;}
 #comments .reply .reply-button a:hover{color: #333;}
+
+#user-info #base-info{border-right-color: black;}
+/*#base-info .recode{background-color: white;}*/
+#base-info .logo{border-color:#e7e7e7 }
+#base-info .logo:hover{border-color:#cfcfcf;}
+/*#base-info .record .item{color: #4182cf;}*/
+#user-info #base-info .logo .cover{background: #e7e7e7;color: black;}
 /* @grop footer 底部容器*/
 #footer{
 	background: black;
