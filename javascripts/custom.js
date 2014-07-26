@@ -36,6 +36,10 @@ $(document).ready(function(){
 	$(".reply-button").bind("click",function(){
 		$(this).reply_slide();
 	});
+	//edit_action1
+	$(".i-edit").click(function(){
+		$(this).edit_action1();
+	});
 
 });
 
@@ -107,7 +111,7 @@ $(document).ready(function(){
 			);
 		});
 	};
-	//reply_slide
+	//reply_slide 回复框toggle
 	$.fn.reply_slide = function(options){
 		var defaults = {
 			class_name:"active",
@@ -121,6 +125,40 @@ $(document).ready(function(){
 			if(flag){
 				panel.addClass(options.class_name).slideDown(options.slide_speed);
 			}								
+		});
+	};
+	//edit_action1 定焦target目标进行编辑 失焦后保存为文本
+	$.fn.edit_action1 = function(options){
+		var defaults = {
+			target_class: ".edit-target",
+			max_length:"11"
+		};
+		var options = $.extend(defaults,options);
+		var target = $(this).siblings(options.target_class);
+		return $(this).each(function(){
+			var txt = target.text();
+			var display = target.css("display");
+			var input = $("<input typy='text' maxlength='"+options.max_length+"' ></input>").attr("value",txt);
+			target.css("display","none");
+			$(this).before(input);
+			$(input)[0].focus();
+			/*为输入框添加失焦事件*/
+			$(input).blur(function(){
+				var newtxt = $(this).attr("value");
+				if(newtxt != txt){
+					if(newtxt == null||newtxt == "") {
+						alert("相册名不能为空！");
+						$(this)[0].focus();
+						return(1);
+					}
+					//这里执行数据库操作。。。
+					else target.text(newtxt);
+				}
+				input.remove();
+				target.css("display",display);
+				return(0);
+			});
+			
 		});
 	};
 })(jQuery);

@@ -172,15 +172,32 @@ a.button{
 }
 .paginator a.first{background-position: right top;}
 .paginator a.last{background-position: left top;}
-/** 无文字的图片按钮
+/** CSS Sprite
 --------------------------------------------------*/
-.i-edit{
+.i-edit,.i-time,.i-author,.i-comment,.i-forward,
+.i-recommend,.i-report,.i-sign,.i-edit{
+	padding: 2px;
 	height: 16px;
 	width: 16px;
 	background:url(../images/layout/shared/MyIcon.png) no-repeat;
 	text-indent: -999px;
-	display: block;
+	display: inline-block;
 }
+.i-time {background-position: 3px 3px;}
+.i-author{background-position: 3px -27px;}
+.i-comment {background-position: 3px -57px;}
+.i-forward {background-position: 3px -87px;}
+.i-recommend {background-position: 3px -117px;}
+.i-sign {background-position: 3px -177px;}
+.i-report {background-position: 3px -207px;}
+.i-edit {background-position: 3px -237px;}
+
+a.i-edit:hover,a.i-time:hover,a.i-author:hover,a.i-comment:hover,a.i-forward:hover,
+a.i-recommend:hover,a.i-report:hover,a.i-sign:hover,a.i-edit:hover{
+	opacity: 0.6;
+	*filter:alpha(opacity:60);
+}
+
 /*
 /* @group 默认容器布局
 ==========================================================*/
@@ -369,54 +386,20 @@ body{cursor: default;}
 
 .post-bar{
 	position: relative;
+	padding: 3px 6px;
 	font-size: 13px !important;
 	overflow: hidden;
-	margin-top:-0px;
-	padding-top: 0px;
 }
 .post-bar span{
-	padding: 3px 6px;
-}
-
-.post-bar span.time,
-.post-bar span.author{
-	background-repeat: no-repeat;
-	padding-left: 20px;
 	float: left;
+	margin-right: 10px;
 }
+.post-bar span span{margin-right: 3px;}
 
-.post-bar span.time {background-position: 3px 5px;}
-.post-bar span.author{background-position: 3px -25px;}
-
-.post-bar span.i-comment,
-.post-bar span.i-forward,
-.post-bar span.i-recommend,
-.post-bar span.i-report,
-.post-bar span.i-sign{
-	background-repeat: no-repeat;
-	width: 20px;
+.post-bar > a{
+	margin-left: 8px;
 	float: right;
 }
-
-.post-bar span.i-comment a{background-position: 3px -57px;}
-.post-bar span.i-forward a{background-position: 3px -87px;}
-.post-bar span.i-recommend a{background-position: 3px -117px;}
-.post-bar span.i-report a{background-position: 3px -207px;}
-.post-bar span.i-sign a{background-position: 3px -177px;}
-
-.post-bar span a{
-	text-indent: -999px;
-	cursor: pointer;
-	display: block;
-	text-decoration: none;
-}
-.post-bar span a:hover{
-	opacity: 0.8;
-	filter: alpha(opacity=80);/*IE fix*/
-	/*BUG待修复 IE下text-indent使a标签无法响应hover*/
-	text-decoration: underline;
-}
-
 
 .post-data{padding-top: 10px;}
 
@@ -677,6 +660,7 @@ body{cursor: default;}
 	padding-left: 20px;
 	line-height: 150%;
 }
+#portfolio .pf-title a{vertical-align: bottom;margin: 0 5px;}
 #portfolio .descr li{}
 
 #portfolio .pf-operation{
