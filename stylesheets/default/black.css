@@ -2,6 +2,7 @@
 
 /* @group 通用设定
 ==================================================*/
+body{color: #666;}
 body,body #body-wrapper{background-color:black;}
 
 a       { color: black; }
@@ -10,7 +11,8 @@ a:hover { color: #666; }
 #header #logo h2 a:hover{
 	border-color: #4183c4;
 }
-#header #head-info #blog-name a:hover{
+#header #head-info #blog-name a:hover,
+#level-bar .rate .rate-num:hover{
 	color: #4183c4;
 	/*color: #84cfff;*/
 	/*color: #1992fc;*/
@@ -97,13 +99,19 @@ a:hover { color: #666; }
 
 #comments .reply .reply-button a{color: #bbb;}
 #comments .reply .reply-button a:hover{color: #333;}
-
-#user-info #base-info{border-right-color: black;}
+/**/
+#user-info{background-color: #e7e7e7;}
+#user-info #base-info{border-right-color: #a7a7a7;}
+/*#user-info #base-info{background-color: #fff;}*/
 /*#base-info .recode{background-color: white;}*/
 #base-info .logo{border-color:#e7e7e7 }
 #base-info .logo:hover{border-color:#cfcfcf;}
 /*#base-info .record .item{color: #4182cf;}*/
-#user-info #base-info .logo .cover{background: #e7e7e7;color: black;}
+#base-info .logo .cover{background: #e7e7e7;color: black;}
+
+#level-bar .rate .rate-bg{background-color: #cfcfcf;}
+#level-bar .rate .rate-num{color: #333;}
+}
 /* @grop footer 底部容器*/
 #footer{
 	background: black;

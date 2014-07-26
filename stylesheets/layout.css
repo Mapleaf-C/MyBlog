@@ -26,9 +26,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 /* @group 圆角 rounded corners
 ---------------------------------------------------------*/
 #sidebar .box ul.nav,
-#content .entry.without-picture .post-bar,
-#comments .comment-dom,
-textarea,button{
+#content .without-picture .post-bar,
+#content .without-bar .post-box .rounded-img,
+#comments .comment-dom,#user-info,
+#level-bar .rate,#level-bar .rate .rate-bg,
+textarea,button,a.button{
 	-maz-border-radius:5px !important;
 	-webkit-border-radius:5px !important;
 	border-radius: 5px !important;
@@ -36,7 +38,7 @@ textarea,button{
 
 /* 上圆角*/
 #header ul.nav li ul li:first-child a,
-#content .entry .post-box .rounded-img{
+#content .post-box .rounded-img{
 	-maz-border-radius:5px 5px 0 0;
 	-webkit-border-radius:5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
@@ -44,7 +46,7 @@ textarea,button{
 
 /* 下圆角*/
 #header ul.nav li ul li:last-child a,
-#content .entry .post-bar{
+#content .post-bar{
 	-maz-border-radius:0 0 5px 5px;
 	-webkit-border-radius:0 0 5px 5px;
 	border-radius: 0 0 5px 5px;
@@ -76,14 +78,66 @@ textarea,button{
 	-webkit-border-top-right-radius:0;
 	border-top-right-radius: 0;
 }
-/*@group inline-block 浏览器兼容性修复
+
+ /* @group Columns 用于Content及其内部布局
+------------------------------------------------------------ */
+
+.one-half, .one-third, .one-fourth,
+.two-third, .three-fourth {
+/*  float: left;*/
+  margin-right: 25px;
+  /*position: relative;*/
+}
+
+.one-half     { width: 292px; }
+.one-third    { width: 186px; }
+.one-fourth   { width: 133px; }
+.two-third    { width: 399px; }
+.three-fourth { width: 452px; }
+
+.one-half.last, .one-third.last, .one-fourth.last,
+.two-third.last, .three-fourth.last {
+  margin-right: 0 !important; 
+}
+
+
+/* Fullwidth*/
+.fullwidth{width: 100%;}
+.fullwidth .one-half, 
+.fullwidth .one-third,
+.fullwidth .one-fourth,
+.fullwidth .two-third,
+.fullwidth .three-fourth { margin-right: 50px; }
+
+.fullwidth .one-half     { width: 445px; }
+.fullwidth .one-third    { width: 280px; }
+.fullwidth .one-fourth   { width: 197px; }
+.fullwidth .two-third    { width: 610px; }
+.fullwidth .three-fourth { width: 693px; }
+/* button---*/
+a.button{
+	display: inline-block;
+	cursor: pointer;
+	line-height: 19px;
+	/*margin-right: 5px;*/
+	padding:5px 12px;
+	text-decoration: none;
+	text-align: center;
+}
+
+/* @group 复用模块
+=========================================================*/
+
+/** 兼容性通用inline-block
+ *在父容器添加类.dib-wrap
+ *在子容器添加类.dib
 --------------------------------------------------*/
 .dib-wrap {
  font-size:0;/* 所有浏览器 */
  *word-spacing:-1px;/* IE6、7 */
  }
  .dib-wrap .dib{
- font-size: 12px;
+ font-size: 13px;
  letter-spacing: normal;
  word-spacing: normal;
  vertical-align:top;
@@ -99,8 +153,38 @@ textarea,button{
  *display:inline;
  *zoom:1;
  }
+/** 分页处理
+ *分别为第一个元素、最后一个元素以及当前选定元素添加.first/.last/.active
+--------------------------------------------*/
+.paginator{
+	display: block;
+	overflow: hidden;
+	margin: 15px 0 65px;
+}
+
+.paginator a{
+	padding: 5px 12px;
+	display: block;
+	font-size: 80%;
+	float: left;
+	border: 1px solid transparent;
+	background-position: center top;
+}
+.paginator a.first{background-position: right top;}
+.paginator a.last{background-position: left top;}
+/** 无文字的图片按钮
+--------------------------------------------------*/
+.i-edit{
+	height: 16px;
+	width: 16px;
+	background:url(../images/layout/shared/MyIcon.png) no-repeat;
+	text-indent: -999px;
+	display: block;
+}
+/*
 /* @group 默认容器布局
 ==========================================================*/
+body{cursor: default;}
 /* wrapper
 -----------------------------------------------------------*/
 .wrapper{
@@ -207,6 +291,7 @@ textarea,button{
 	border-bottom: none;
 	height: auto;
 	opacity: .9;
+	*filter:alpha(opacity:90);/*IE fix*/
 	width: 150px;
 	margin: 0;
 	padding: 8px 8px;
@@ -243,7 +328,7 @@ textarea,button{
 	position:relative;
 	overflow:hidden;
 	padding-top: 45px;
-	height: 1000px;
+	min-height: 450px;
 }
 /*........................Content.....................*/
 #content{
@@ -266,6 +351,8 @@ textarea,button{
 
 .post-box a img{
 	display: block;
+	width: 100%;
+	height: 100%;
 	margin-bottom: 0; 
 	padding: 0;
 	position: relative;
@@ -311,18 +398,22 @@ textarea,button{
 	float: right;
 }
 
-.post-bar span.i-comment a{text-indent: -999px;background-position: 3px -57px;}
-.post-bar span.i-forward a{text-indent: -9999px;background-position: 3px -87px;}
-.post-bar span.i-recommend a{text-indent: -9999px;background-position: 3px -117px;}
-.post-bar span.i-report a{text-indent: -9999px;background-position: 3px -207px;}
-.post-bar span.i-sign a{text-indent: -9999px;background-position: 3px -177px;}
+.post-bar span.i-comment a{background-position: 3px -57px;}
+.post-bar span.i-forward a{background-position: 3px -87px;}
+.post-bar span.i-recommend a{background-position: 3px -117px;}
+.post-bar span.i-report a{background-position: 3px -207px;}
+.post-bar span.i-sign a{background-position: 3px -177px;}
 
 .post-bar span a{
+	text-indent: -999px;
+	cursor: pointer;
 	display: block;
 	text-decoration: none;
 }
 .post-bar span a:hover{
 	opacity: 0.8;
+	filter: alpha(opacity=80);/*IE fix*/
+	/*BUG待修复 IE下text-indent使a标签无法响应hover*/
 	text-decoration: underline;
 }
 
@@ -337,22 +428,7 @@ textarea,button{
 	padding-top: 5px;
 	font-size: 12px;
 }
-/*分页处理------------------------*/
-.paginator{
-	display: block;
-	overflow: hidden;
-	margin: 15px 0 65px;
-}
 
-.paginator a{
-	padding: 5px 12px;
-	display: block;
-	font-size: 80%;
-	float: left;
-	background-position: center top;
-}
-.paginator a.first{background-position: right top;}
-.paginator a.last{background-position: left top;}
 /*评论与回复-----------------------*/
 #content #comments{
 	padding: 35px 0;
@@ -407,15 +483,11 @@ textarea,button{
 	height: 120px;
 	width: 99%;
 }
-#comments .reply button{
+ #comments .reply a.button{
 	*margin-top: 10px;/*IE fix*/
 	padding: 2px 10px;
-}
+} 
 
-#comments .comment-dom .reply .reply-button{
-	display: block;
-	overflow: hidden;
-}
 #comments .comment-dom .reply .reply-panel{
 	margin-top: 5px;
 	display: none;
@@ -432,21 +504,26 @@ textarea,button{
 
 #comments .comment-dom .comment-dom .content{width: 453px;}
 #comments .comment-dom .comment-dom .content .comment-info .target{display: inline-block;}
-/*user-info-------------------*/
+/*user-info----------------------*/
+#user-info{
+	margin-bottom: 45px;
+	padding: 20px;
+	min-height: 350px;
+	/*border: 1px solid black;*/
+}
 #user-info #base-info{
+	padding-top: 5px;
 	text-align: center;
-	float: left;
-	width: 40%;
-	padding-right: 25px;
-	border-right: 1px solid transparent;
+	width: 38%;
+	/*border: 1px solid black;*/
+	/*border-right: 1px solid transparent;*/
+	overflow: hidden;
 }
 #base-info .gravatar{
-	/*float: left;*/
 	overflow: hidden;
 	width: 80px;
 	text-align: center;
 	margin:0 auto;
-	/*display: inline-block;*/
 }
 #base-info .logo{
 	width: 78px;height: 78px;
@@ -458,6 +535,7 @@ textarea,button{
 }
 
 #base-info .logo .cover{
+	display: none;
 	opacity: 0;
 	width: 100%;
 	height: 100%;
@@ -474,7 +552,37 @@ textarea,button{
 	position: absolute;
 	z-index: 0;
 }
-#user-info #base-info .recode{
+#base-info #level-bar{
+	margin: 10px 0;
+	line-height: 17px;
+	height: 17px;
+	display:inline-block;
+}
+#level-bar .level{vertical-align: middle;}
+#level-bar .rate{
+	cursor: pointer;
+	vertical-align: middle;
+	position: relative;
+	width: 150px;
+	height: 100%;
+	padding: 2px;
+	border: 1px solid #cfcfcf;
+	display: inline-block;
+	text-align: left;
+}
+#level-bar .rate .rate-bg{
+	display: block;
+	height: 100%;
+	z-index: 1;
+}
+#level-bar .rate .rate-num{
+	display: block;
+	z-index: 2;
+	position: absolute;left:0;top:2px;
+	text-align: center;
+	width: 100%;
+}
+#base-info .recode{
 	padding: 15px 0;
 	margin: 10px 0;
 	overflow: none;
@@ -495,20 +603,85 @@ textarea,button{
 #base-info .recode .first{border-left: none;}
 #base-info .recode .last{border-right: none;}
 
-#base-info .operation{
+#base-info .ui-operation{
 	/*text-align: left;*/
 	margin: 15px 0;
 	/*display: inline-block;*/
 	/*width: 100px;*/
 	/*float: left;*/
 }
-#base-info .operation span{
+#base-info .ui-operation span{
 	/*display: block;*/
 	font-size: 14px;
 	padding: 0 10px;
 	margin:1px 0;
 }
 
+#user-info #personal-info{
+	width: 61%;
+	text-align: left;
+	overflow: hidden;
+	vertical-align: top;
+	/*border: 1px solid black;*/
+}
+#personal-info #pi-title{
+	margin-left:  50px;
+	padding-bottom: 5px;
+	/*border:1px solid black;*/
+	border-bottom: 1px solid transparent;
+	text-align: left;
+	overflow: hidden;
+}
+#pi-title span{display: inline-block;}
+#pi-title #pi-change{
+	padding-left: 1em;
+	display: none;
+}
+
+#personal-info ul#pi-data{
+	padding-top: 15px;
+	margin-left:50px;
+	list-style: none;
+	border-top: 1px solid transparent;
+}
+#pi-data li{
+	margin-bottom: 8px;
+}
+#pi-data li .li-label{
+	display: inline-block;
+	width: 8em;
+}
+/*若是用户自己的信息页*/
+#user-info.self-info .ui-operation{display: none;}
+#user-info.self-info #pi-change{display: inline-block;}
+#user-info.self-info .logo .cover{display: block;}
+
+/*portfolio--------------------------*/
+#portfolio .portfolio-item{
+	margin-bottom: 40px;
+}
+#portfolio .portfolio-item div{vertical-align: middle;}
+#portfolio .pf-title{
+	padding-bottom: 5px;
+	border-bottom: 1px solid transparent;
+}
+#portfolio .portfolio-item .text{
+	min-height: 40px;
+	max-height: 80px;
+	padding: 10px 2px;
+	border-top: 1px solid transparent;
+	overflow:hidden;
+}
+#portfolio .portfolio-item .descr{
+
+	padding-left: 20px;
+	line-height: 150%;
+}
+#portfolio .descr li{}
+
+#portfolio .pf-operation{
+	margin-top: 10px;
+}
 /*........................Sidebar.....................*/
 #sidebar{
 	float: right;
@@ -543,6 +716,7 @@ textarea,button{
 	background-position: 1.8em 17px;
 	padding-left: 2.5em;
 }
+
 /* @group 下信息栏bottombar
 -----------------------------------------------------------*/
 #bottombar{}
@@ -560,5 +734,5 @@ body.no_topbar #topbar{display: none;}
 /* no-nav-----------------------------------------------*/
 body.no_nav #header ul.nav{display:none;}
 /* no-sidebar-------------------------------------------*/
-body.no-sidebar #sidebar{display: none;}
-body.no-sidebar #content{width: 100%;}
+body.fullwidth #sidebar{display: none;}
+body.fullwidth #content{width: 100%;}

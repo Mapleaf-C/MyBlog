@@ -4,13 +4,19 @@ body{font: 13px "Microsoft YaHei";}
 
 a{text-decoration: none;}
 
+/*黑色虚线框修正*/
+a,area { blr:expression(this.onFocus=this.blur()) } /* for IE */
+:focus { -moz-outline-style: none; } /* for Firefox */
+
+
 h2 { font-size: 30px; line-height: 38px; margin-bottom: 10px;font-weight: normal;}
+h3 {font-size: 22px;font-style: normal;font-weight: normal;}
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   display: inline-block;
 }
 
-button{
+button,a.button{
 	color: #666;
 	outline: none;
 	border: 1px solid #c2c2c2;
@@ -20,7 +26,7 @@ button{
 	-webkit-box-shadow:0 1px 1px #ccc;
 }
 
-button:hover{
+button,a.button:hover{
 	color: #333;
 	border: 1px solid #888;
 	background: #e7e7e7 url(../../images/layout/shared/metal-gradient.jpg) repeat-x;
@@ -29,7 +35,7 @@ button:hover{
 	-webkit-box-shadow:0 1px 1px #aaa;
 }
 
-button:active{
+button,a.button:active{
 	border: 1px solid #888;
 	box-shadow: none;
 	-moz-box-shadow:none;
@@ -81,11 +87,7 @@ button:active{
 	font-size: 15px;
 	font-family: "Microsoft YaHei";
 }
-#sidebar .box h3{
-	font-size: 22px;
-	font-style: normal;
-	font-weight: normal;
-}
+
 /*border&color sets*/
 #sidebar .box h3{
 	color:#000;
@@ -167,6 +169,13 @@ button:active{
 }
 
 #user-info #base-info .recode div{
-	border-right-color:#c2c2c2;
+	border-right-color:#cfcfcf;
 	border-left-color:white;
 }
+#personal-info #pi-title{border-bottom-color: #c7c7c7;}
+#personal-info ul#pi-data{border-top-color: white;}
+#pi-data li .li-label{font-weight: bold;}
+
+#portfolio .pf-title{border-bottom-color:#cfcfcf;}
+#portfolio .portfolio-item .text{border-top-color:white;}
+
