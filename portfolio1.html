@@ -15,6 +15,8 @@
 		<script type="text/javascript" src="javascripts/jquery.js"></script>
 		<!-- Superfish -->
 		<script type="text/javascript" src="javascripts/jquery.superfish.js"></script>
+		<!-- textareaCounter -->
+		<script type="text/javascript" src="javascripts/jquery.textareaCounter.js"></script>
 		<!-- PrettyPhoto -->
 		<link rel="stylesheet" href="plugins/prettyPhoto/css/prettyPhoto.css" />
 		<script type="text/javascript" src="plugins/prettyPhoto/js/jquery.prettyPhoto.js"></script>
@@ -82,7 +84,10 @@
 				<div class="wrapper">
 					<div id="content">
 						<div id="portfolio">
-							<h2>相册</h2>
+							<div id="pf-title" class = "dib-wrap">
+								<h2 class="dib">相册</h2>
+								<a href="javascript:void(0)" class="i-s-add dib">XXX</a>
+							</div>
 							<div class="portfolio-item dib-wrap">
 								<div class="two-third without-bar dib">
 									<div class="post-box">
@@ -92,21 +97,20 @@
 									</div>
 								</div>
 								<div class="one-third last dib">
-									<div class="pf-title">
+									<div class="pfi-title">
 										<h3 class="edit-target dib">一个相册名</h3>
-										<a href="javascript:void()" title="编辑" class="i-edit dib">XXX</a>
+										<a href="javascript:void(0)" title="编辑" class="i-edit dib">XXX</a>
 									</div>
-									<!-- <a href="javascript:void()">暂无描述</a> -->
 									<div class="text">
-										<p>这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字</p>
+										<p class="dlbc-edit" title= "双击可以编辑哦~">这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字这个描述不要超过50字字母数字也算一个字</p>
 									</div>
 									<ul class="descr">
-										<li><b>类别：</b><a href="javascript:void()">未定义</a></li>
-										<li><b>权限：</b><a href="javascript:void()">公开</a></li>
-										<li><b>数量：</b><a href="javascript:void()">27</a></li>
-										<li><b>创建时间：</b><a>2014.07.24</a></li>
+										<li><b>类别：</b><a href="javascript:void(0)">未定义</a></li>
+										<li><b>权限：</b><a href="javascript:void(0)">公开</a></li>
+										<li><b>数量：</b>27</li>
+										<li><b>创建时间：</b>2014.07.24</li>
 									</ul>
-									<div class="pf-operation">
+									<div class="pfi-operation">
 										<a href="album.html?#" class="button">进&ensp;入</a>
 									</div>
 								</div>
@@ -120,21 +124,21 @@
 									</div>
 								</div><!-- end item -->
 								<div class="one-third last dib">
-									<div class="pf-title dib-wrap">
-										<h3 class="edit-target dib">这个相册名最多十一个字</h3>
-										<a href="javascript:void()" title="编辑" class="i-edit dib">XXX</a>
+									<div class="pfi-title dib-wrap">
+										<h3 class="edit-target dib">这个相册名最多十个字</h3>
+										<a href="javascript:void(0)" title="编辑" class="i-edit dib">XXX</a>
 									</div>
-									<!-- <a href="javascript:void()">暂无描述</a> -->
+									<!-- <a href="javascript:void(0)">暂无描述</a> -->
 									<div class="text">
-										<p>这个描述不要超过50字</p>
+										<p class="dlbc-edit" title= "双击可以编辑哦~">这个描述不要超过50字</p>
 									</div>
 									<ul class="descr">
-										<li><b>类别：</b><a href="javascript:void()">未定义</a></li>
-										<li><b>权限：</b><a href="javascript:void()">公开</a></li>
-										<li><b>数量：</b><a href="javascript:void()">27</a></li>
-										<li><b>创建时间：</b><a>2014.07.24</a></li>
+										<li><b>类别：</b><a href="javascript:void(0)">未定义</a></li>
+										<li><b>权限：</b><a href="javascript:void(0)">公开</a></li>
+										<li><b>数量：</b>27</li>
+										<li><b>创建时间：</b>2014.07.24</li>
 									</ul><!-- end item -->
-									<div class="pf-operation">
+									<div class="pfi-operation">
 										<a href="album.html?#" class="button">进&ensp;入</a>
 									</div>
 								</div>

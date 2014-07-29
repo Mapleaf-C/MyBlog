@@ -9,8 +9,9 @@ a,area { blr:expression(this.onFocus=this.blur()) } /* for IE */
 :focus { -moz-outline-style: none; } /* for Firefox */
 
 
-h2 { font-size: 30px !important; line-height: 38px; margin-bottom: 10px;font-weight: normal;}
+h2 {font-size: 30px !important; line-height: 38px; margin-bottom: 10px;font-weight: normal;}
 h3 {font-size: 22px !important;font-style: normal;font-weight: normal;}
+h4 {font-size: 17px !important;font-style: normal;font-weight: normal;}
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   display: inline-block;
@@ -43,7 +44,7 @@ button,a.button:active{
 	box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
  	-moz-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
  	-webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0,.6);
-};
+}
 /* @group header 顶部容器
 ===========================================================*/
 /*font */
@@ -161,6 +162,6 @@ button,a.button:active{
 #personal-info ul#pi-data{border-top-color: white;}
 #pi-data li .li-label{font-weight: bold;}
 
-#portfolio .pf-title{border-bottom-color:#cfcfcf;}
+#portfolio .pfi-title{border-bottom-color:#cfcfcf;}
 #portfolio .portfolio-item .text{border-top-color:white;}
 

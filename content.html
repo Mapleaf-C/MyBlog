@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" >
 	<head>
-		<title>Ariticle</title>
+		<title>Content</title>
 		<!-- Meta-Tags -->
 		<meta name="description" content=""/><!-- 空描述 -->
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -15,13 +15,15 @@
 		<script type="text/javascript" src="javascripts/jquery.js"></script>
 		<!-- Superfish -->
 		<script type="text/javascript" src="javascripts/jquery.superfish.js"></script>
+		<!-- textareaCounter -->
+		<script type="text/javascript" src="javascripts/jquery.textareaCounter.js"></script>
 		<!-- PrettyPhoto -->
 		<link rel="stylesheet" href="plugins/prettyPhoto/css/prettyPhoto.css" />
 		<script type="text/javascript" src="plugins/prettyPhoto/js/jquery.prettyPhoto.js"></script>
 		<!-- Custom Js -->
 		<script type="text/javascript" src="javascripts/custom.js"></script>
 	</head>
-	<body class="">
+	<body class="admin">
 		<div id="body-wrapper"><!-- 容器 -->
 			<div id="header"><!-- 顶部容器 -->
 				<div class="wrapper"><!-- 顶部内容区 -->
@@ -97,11 +99,6 @@
 									<span class="i-author"></span>
 									<a href="#">Mapleaf</a>
 								</span>
-								<a class="i-sign"  title="添加到备选" href="#">XXX</a>
-								<a class="i-report" title="举报" href="#">XXX</a>
-								<a class="i-forward" title="转发"href="#">XXX</a>
-								<a class="i-recommend" title="推荐" href="#">XXX</a>
-								<a class="i-comment" title="评论" href="#">XXX</a>
 							</div>
 							<div class="post-data">
 								<p>
@@ -134,10 +131,10 @@
 										</div>
 									</div><!-- end comment -->
 									<div class="reply">
-										<span class="reply-button"><a href="javascript:void()">回复</a></span>
+										<span class="reply-button"><a href="javascript:void(0)">回复</a></span>
 										<div class="reply-panel">
 											<textarea name="" id="" cols="75" rows="8" class="reply-text"></textarea>
-											<a class="button" href="javascript:void()" >提交</a>
+											<a class="button" href="javascript:void(0)" >提交</a>
 										</div>
 									</div><!-- end reply -->
 								</li>
@@ -160,10 +157,10 @@
 										</div>
 									</div><!-- end comment -->
 									<div class="reply">
-										<span class="reply-button"><a href="javascript:void()">回复</a></span>
+										<span class="reply-button"><a href="javascript:void(0)">回复</a></span>
 										<div class="reply-panel">
 											<textarea name="" id="" cols="75" rows="8" class="reply-text"></textarea>
-											<a class="button" href="javascript:void()" >提交</a>
+											<a class="button" href="javascript:void(0)" >提交</a>
 										</div>
 									</div><!-- end reply -->
 									<ol class="comment-list">
@@ -186,10 +183,10 @@
 												</div>
 											</div><!-- end comment -->
 											<div class="reply">
-												<span class="reply-button"><a href="javascript:void()">回复</a></span>
+												<span class="reply-button"><a href="javascript:void(0)">回复</a></span>
 												<div class="reply-panel">
 													<textarea name="" id="" cols="75" rows="8" class="reply-text"></textarea>
-													<a class="button" href="javascript:void()" >提交</a>
+													<a class="button" href="javascript:void(0)" >提交</a>
 												</div>
 											</div><!-- end reply -->
 										</li>
@@ -212,10 +209,10 @@
 												</div>
 											</div><!-- end comment -->
 											<div class="reply">
-												<span class="reply-button"><a href="javascript:void()">回复</a></span>
+												<span class="reply-button"><a href="javascript:void(0)">回复</a></span>
 												<div class="reply-panel">
 													<textarea name="" id="" cols="75" rows="8" class="reply-text"></textarea>
-													<a class="button" href="javascript:void()" >提交</a>
+													<a class="button" href="javascript:void(0)" >提交</a>
 												</div>
 											</div><!-- end reply -->
 										</li>
@@ -240,10 +237,10 @@
 										</div>
 									</div><!-- end comment -->
 									<div class="reply">
-										<span class="reply-button"><a href="javascript:void()">回复</a></span>
+										<span class="reply-button"><a href="javascript:void(0)">回复</a></span>
 										<div class="reply-panel">
 											<textarea name="" id="" cols="75" rows="8" class="reply-text"></textarea>
-											<a class="button" href="javascript:void()" >提交</a>
+											<a class="button" href="javascript:void(0)" >提交</a>
 										</div>
 									</div><!-- end reply -->
 								</li>								
@@ -252,7 +249,7 @@
 								<div class="reply-panel">
 									<textarea name="" id="" cols="" rows="8" class="reply-text"></textarea>
 									<!-- <button id="submit" name="submit" type="submit">提交</button> -->
-									<a class="button" href="javascript:void()" >提交</a>
+									<a class="button" href="javascript:void(0)" >提交</a>
 								</div>
 							</div>
 						</div><!-- end comment -->

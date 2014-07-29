@@ -1,4 +1,3 @@
-//@ 插件配置--------------------------------------
 $(document).ready(function(){
 	/* @group header 顶层容器
 	====================================================*/
@@ -27,6 +26,12 @@ $(document).ready(function(){
 			theme:'facebook' // light_rounded / dark_rounded / light_square / dark_square / facebook
 		});
 	}
+	//textareaCounter
+	// if($.isFunction($.fn.textareaCount)){
+	// 	$(".textareaCounter").textareaCount({
+	// 		maxCharacterSize
+	// 	});
+	// }
 	//prettyPhoto_overlay
 	$(window).load(function(){
 		$("a[rel^='prettyPhoto'] img" ).prettyPhoto_overlay();
@@ -36,11 +41,36 @@ $(document).ready(function(){
 	$(".reply-button").bind("click",function(){
 		$(this).reply_slide();
 	});
+	//pb_addItem
+	$(".post-bar").pb_addItem();
 	//edit_action1
-	$(".i-edit").click(function(){
+	$("#portfolio .i-edit").click(function(){
 		$(this).edit_action1();
 	});
-
+	$("#album .i-edit").click(function(){
+		$(this).edit_action1({
+			maxlength:15
+		});
+	});
+	//edit_action2
+	$("#portfolio .dlbc-edit").dblclick(function(){
+		$(this).edit_action2({
+			height:"60px",
+			maxlength:60
+		});
+	});
+	$("#album .dlbc-edit").dblclick(function(){
+		$(this).edit_action2({
+			height:"30px",
+			maxlength:50
+		});
+	});
+/*@group Animate
+===========================================*/
+	$("a[class^='i-s-']").hover(
+		function(){$(this).stop().animate({opacity:1},200)},
+		function(){$(this).stop().animate({opacity:0.3},200)}
+	);
 });
 
 //@自定义---------------------------------------
@@ -51,7 +81,7 @@ $(document).ready(function(){
 			 class_name : "right",
 			 node_sum:2
 			};
-		var options = $.extend(defaults,options);//？？为何要这么组织
+		var options = $.extend(defaults,options);
 		var length = this.size();
 		return this.each(function(i){
 			if((length - options.node_sum) <= i){
@@ -103,7 +133,7 @@ $(document).ready(function(){
 				var width = img.width();
 				var height = img.height();
 				var position = img.position();
-				bg.css({width:width,height:height,top:position.top,left:position.left});
+				bg.css({"width":width,"height":height,"top":position.top,"left":position.left});
 			})
 			$(this).hover(
 				function(){img.stop().animate({opacity:options.opacity},options.animate_speed);},
@@ -127,27 +157,56 @@ $(document).ready(function(){
 			}								
 		});
 	};
+	//pb_addItem post-bar动态展示
+	$.fn.pb_addItem = function(options){
+		var defaults = {
+		};
+		var options = $.extend(defaults,options);
+		var body = $("body");
+		return $(this).each(function(){
+			var bar = $(this);
+			var label = "";
+			if(body.hasClass("admin")){
+				label = $("<a class=\"i-sign\" title=\"添加到备选\" href=\"#\">XXX</a>"
+							+"<a class=\"i-report\" title=\"举报\" href=\"#\">XXX</a>"
+							+"<a class=\"i-forward\" title=\"转发\"href=\"#\">XXX</a>"
+							+"<a class=\"i-recommend\" title=\"推荐\" href=\"#\">XXX</a>"
+							+"<a class=\"i-comment\" title=\"评论\" href=\"#\">XXX</a>");
+			}else if(body.hasClass("visitor")){
+				label = $("<a class=\"i-report\" title=\"举报\" href=\"#\">XXX</a>"
+							+"<a class=\"i-forward\" title=\"转发\"href=\"#\">XXX</a>"
+							+"<a class=\"i-recommend\" title=\"推荐\" href=\"#\">XXX</a>"
+							+"<a class=\"i-comment\" title=\"评论\" href=\"#\">XXX</a>");			
+			}else if(body.hasClass("user")){
+				label = $("<a class=\"i-delete\" title=\"删除\" href=\"#\">XXX</a>");
+			}
+			bar.append(label);
+		});
+
+	}
 	//edit_action1 定焦target目标进行编辑 失焦后保存为文本
+	//*Uncaught SyntaxError
 	$.fn.edit_action1 = function(options){
 		var defaults = {
 			target_class: ".edit-target",
-			max_length:"11"
+			maxlength:10
 		};
 		var options = $.extend(defaults,options);
 		var target = $(this).siblings(options.target_class);
 		return $(this).each(function(){
 			var txt = target.text();
 			var display = target.css("display");
-			var input = $("<input typy='text' maxlength='"+options.max_length+"' ></input>").attr("value",txt);
+			var input = $("<input typy='text' maxlength='"+options.maxlength+"'</input>").attr("value",txt);
 			target.css("display","none");
-			$(this).before(input);
+			target.before(input);
 			$(input)[0].focus();
 			/*为输入框添加失焦事件*/
 			$(input).blur(function(){
 				var newtxt = $(this).attr("value");
 				if(newtxt != txt){
-					if(newtxt == null||newtxt == "") {
-						alert("相册名不能为空！");
+					newtxt=newtxt.replace(/\s+/g,"");
+					if(newtxt== null||newtxt == "") {
+						alert("内容不能为空！");
 						$(this)[0].focus();
 						return(1);
 					}
@@ -159,6 +218,62 @@ $(document).ready(function(){
 				return(0);
 			});
 			
+		});
+	};
+	//edit_action2 双击对目标进行编辑，失焦保存
+	$.fn.edit_action2 = function (options) {
+		var defaults = {
+			width : "98%",
+			height: "50px",
+			empty:true,
+			empty_string:"暂无描述",
+			maxlength:100
+		};
+		var options = $.extend(defaults,options);
+		var target = $(this);
+		return $(this).each(function(){
+			var txt = target.text();
+			var display = target.css("display");
+			var textarea = $("<textarea maxlength='"+options.maxlength+"'></textarea>").attr("value",txt);
+			target.css({"display":"none"});
+			textarea.css({"width":options.width,"height":options.height,"resize":"none","overflow":"hidden"});
+			//textareaCounter
+			target.before(textarea);
+			if($.isFunction($.fn.textareaCount)){
+				textarea.textareaCount({
+					'maxCharacterSize': options.maxlength,
+					// 'originalStyle': 'originalTextareaInfo',
+ 					// 'warningStyle' : 'warningTextareaInfo',
+ 					'warningNumber': 40,
+ 					'displayFormat' : '#input/#max'//#input当前、#word词量、#max最大、#left剩余
+				});
+			}
+			
+			$(textarea)[0].focus();
+			/*为输入框添加失焦事件*/
+			$(textarea).blur(function(){
+				var newtxt = $(this).attr("value");
+				if(newtxt != txt){
+					newtxt=newtxt.replace(/\s+/g,"");
+					if(newtxt == null||newtxt == "") {
+						if(options.empty){
+							newtxt = options.empty_string;
+						}
+						else{
+							alert("内容不能为空！");
+							$(this)[0].focus();
+							return(1);
+						}
+					}
+					//这里执行数据库操作。。。
+					target.text(newtxt);
+				}
+				target.siblings(".charleft").remove();//textareaCounter自动添加的层
+				textarea.remove();
+
+				target.css("display",display);
+				return(0);
+			});
 		});
 	};
 })(jQuery);

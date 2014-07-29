@@ -128,7 +128,7 @@ a.button{
 /* @group 复用模块
 =========================================================*/
 
-/** 兼容性通用inline-block
+/** 【兼容性通用inline-block】
  *在父容器添加类.dib-wrap
  *在子容器添加类.dib
 --------------------------------------------------*/
@@ -153,7 +153,7 @@ a.button{
  *display:inline;
  *zoom:1;
  }
-/** 分页处理
+/** 【分页处理】
  *分别为第一个元素、最后一个元素以及当前选定元素添加.first/.last/.active
 --------------------------------------------*/
 .paginator{
@@ -172,10 +172,11 @@ a.button{
 }
 .paginator a.first{background-position: right top;}
 .paginator a.last{background-position: left top;}
-/** CSS Sprite
+
+/** 【CSS Sprite】
 --------------------------------------------------*/
 .i-edit,.i-time,.i-author,.i-comment,.i-forward,
-.i-recommend,.i-report,.i-sign,.i-edit{
+.i-recommend,.i-report,.i-sign,.i-edit,.i-delete{
 	padding: 2px;
 	height: 16px;
 	width: 16px;
@@ -191,13 +192,26 @@ a.button{
 .i-sign {background-position: 3px -177px;}
 .i-report {background-position: 3px -207px;}
 .i-edit {background-position: 3px -237px;}
+.i-delete{background-position: -27px -27px;}
 
 a.i-edit:hover,a.i-time:hover,a.i-author:hover,a.i-comment:hover,a.i-forward:hover,
-a.i-recommend:hover,a.i-report:hover,a.i-sign:hover,a.i-edit:hover{
+a.i-recommend:hover,a.i-report:hover,a.i-sign:hover,a.i-edit:hover,a.i-delete:hover{
 	opacity: 0.6;
 	*filter:alpha(opacity:60);
 }
-
+/*特殊结构的CSS Sprite*/
+.i-s-add{
+	padding: 2px;
+	height: 25px;
+	width: 55px;
+	background:url(../images/layout/shared/MyIcon.png) no-repeat;
+	text-indent: -999px;
+	display: inline-block;
+	opacity: 0.3;
+	*filter:alpha(opacity:30);
+}
+.i-s-add{background-position: -57px 3px;}
+.i-s-add:hover{background-position: -57px -42px;}
 /*
 /* @group 默认容器布局
 ==========================================================*/
@@ -386,8 +400,9 @@ body{cursor: default;}
 
 .post-bar{
 	position: relative;
-	padding: 3px 6px;
+	padding: 2px 6px;
 	font-size: 13px !important;
+	min-height: 10px;
 	overflow: hidden;
 }
 .post-bar span{
@@ -640,32 +655,51 @@ body{cursor: default;}
 #user-info.self-info .logo .cover{display: block;}
 
 /*portfolio--------------------------*/
+#pf-title{margin-bottom: 10px;}
+#pf-title a{vertical-align: middle;}
+#pf-title > h2{margin:0 10px 0 0;vertical-align: middle;}
+
 #portfolio .portfolio-item{
 	margin-bottom: 40px;
 }
 #portfolio .portfolio-item div{vertical-align: middle;}
-#portfolio .pf-title{
+
+#portfolio .pfi-title{
 	padding-bottom: 5px;
 	border-bottom: 1px solid transparent;
 }
+#portfolio .pfi-title a{vertical-align: bottom;margin: 0 5px;}
+
 #portfolio .portfolio-item .text{
 	min-height: 40px;
 	max-height: 80px;
 	padding: 10px 2px;
 	border-top: 1px solid transparent;
 	overflow:hidden;
+	text-align: right;
 }
+#portfolio .portfolio-item .text p{text-align: left;}
 #portfolio .portfolio-item .descr{
 
 	padding-left: 20px;
 	line-height: 150%;
 }
-#portfolio .pf-title a{vertical-align: bottom;margin: 0 5px;}
 #portfolio .descr li{}
 
-#portfolio .pf-operation{
+#portfolio .pfi-operation{
 	margin-top: 10px;
 }
+/*album----------------------*/
+#album .album-col{margin-bottom: 30px;}
+#album .album-item{vertical-align: top;}
+#album .album-item .text{
+	min-height: 30px;
+/*	max-height: 80px;*/
+/*	padding: 10px 2px;*/
+	overflow:hidden;
+}
+#album .abi-title{margin: 10px 0;}
+#album .abi-title a{vertical-align: bottom;}
 /*........................Sidebar.....................*/
 #sidebar{
 	float: right;
