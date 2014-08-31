@@ -15,8 +15,9 @@ $(document).ready(function(){
 	$("#header ul.nav > li").drop_on_the_leaf();
 	/* @group main 主容器
 	====================================================*/
+	$("#main").css("min-height",$(window).height()-225);
 	//sliding_links
-	$("#sidebar ul li a").sliding_links();
+	$("#sidebar ul li a" ).sliding_links();
 	//prettyPhoto
 	if($.isFunction($.fn.prettyPhoto)){
 		$("a[rel^='prettyPhoto']").prettyPhoto({
@@ -26,13 +27,6 @@ $(document).ready(function(){
 			theme:'facebook' // light_rounded / dark_rounded / light_square / dark_square / facebook
 		});
 	}
-	//textareaCounter
-	// if($.isFunction($.fn.textareaCount)){
-	// 	$(".textareaCounter").textareaCount({
-	// 		maxCharacterSize
-	// 	});
-	// }
-	//prettyPhoto_overlay
 	$(window).load(function(){
 		$("a[rel^='prettyPhoto'] img" ).prettyPhoto_overlay();
 	});
@@ -65,8 +59,11 @@ $(document).ready(function(){
 			maxlength:50
 		});
 	});
-/*@group Animate
-===========================================*/
+	/*@group Active 类添加
+	==========================================*/
+  	
+	/*@group Animate
+	===========================================*/
 	$("a[class^='i-s-']").hover(
 		function(){$(this).stop().animate({opacity:1},200)},
 		function(){$(this).stop().animate({opacity:0.3},200)}
@@ -210,7 +207,7 @@ $(document).ready(function(){
 						$(this)[0].focus();
 						return(1);
 					}
-					//这里执行数据库操作。。。
+					//这里提交。。。
 					else target.text(newtxt);
 				}
 				input.remove();
@@ -265,7 +262,7 @@ $(document).ready(function(){
 							return(1);
 						}
 					}
-					//这里执行数据库操作。。。
+					//这里提交。。。
 					target.text(newtxt);
 				}
 				target.siblings(".charleft").remove();//textareaCounter自动添加的层
