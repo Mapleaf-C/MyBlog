@@ -1,0 +1,908 @@
+/* @group 通用
+============================================================ */
+
+/* @group 重设
+------------------------------------------------------------ */
+
+/* 基础重设*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,input,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;/*外边距*/
+	padding: 0;/*内边距*/
+	border: 0px;/*边框*/                                                                                           /*修改*/
+  	border-style: solid;                                                                                           /*新增*/
+	outline: 0;/*轮廓*/
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+/* @group 圆角 rounded corners
+---------------------------------------------------------*/
+.login_div,.inputOuter,.inputOuter_focus,input,
+#sidebar .box ul.nav,
+#content .without-picture .post-bar,
+#content .without-bar .post-box .rounded-img,
+#comments .comment-dom,#user-info,
+#level-bar .rate,#level-bar .rate .rate-bg,
+textarea,button,a.button,.frame{
+	-maz-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius: 5px !important;
+}
+
+/* 上圆角*/
+#header ul.nav li ul li:first-child a,
+#content .post-box .rounded-img{
+	-maz-border-radius:5px 5px 0 0;
+	-webkit-border-radius:5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+
+/* 下圆角*/
+#header ul.nav li ul li:last-child a,
+#content .post-bar{
+	-maz-border-radius:0 0 5px 5px;
+	-webkit-border-radius:0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
+/* 左圆角*/
+#content .paginator a.first{
+	-maz-border-radius:5px 0 0 5px;
+	-webkit-border-radius:5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+/*右圆角*/
+#content .paginator a.last{
+	-maz-border-radius:0 5px 5px 0;
+	-webkit-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+/*取消二级子菜单连接处圆角*/
+#header ul.nav li ul li ul li:first-child a{
+	-maz-border-radius-topleft:0;
+	-webkit-border-top-left-radius:0;
+	border-top-left-radius: 0;
+}
+/*左侧下拉二级子菜单圆角配置*/
+#header ul.nav li.right ul li ul li:first-child a{
+	-maz-border-radius-topleft:5px;
+	-webkit-border-top-left-radius:5px;
+	border-top-left-radius: 5px;
+	-maz-border-radius-topright:0;
+	-webkit-border-top-right-radius:0;
+	border-top-right-radius: 0;
+}
+
+ /* @group Columns 用于Content及其内部的通用布局
+------------------------------------------------------------ */
+
+.one-half, .one-third, .one-fourth,
+.two-third, .three-fourth {
+/*  float: left;*/
+  margin-right: 25px;
+  /*position: relative;*/
+}
+
+.one-half     { width: 292px; }
+.one-third    { width: 186px; }
+.one-fourth   { width: 133px; }
+.two-third    { width: 399px; }
+.three-fourth { width: 452px; }
+
+.one-half.last, .one-third.last, .one-fourth.last,
+.two-third.last, .three-fourth.last {
+  margin-right: 0 !important; 
+}
+/* Fullwidth*/
+.fullwidth{width: 100%;}
+.fullwidth .one-half, 
+.fullwidth .one-third,
+.fullwidth .one-fourth,
+.fullwidth .two-third,
+.fullwidth .three-fourth { margin-right: 50px; }
+
+.fullwidth .one-half     { width: 445px; }
+.fullwidth .one-third    { width: 280px; }
+.fullwidth .one-fourth   { width: 197px; }
+.fullwidth .two-third    { width: 610px; }
+.fullwidth .three-fourth { width: 693px; }
+/*frame inside*/
+.frame{
+	overflow: hidden;
+	border: 1px solid transparent;
+	padding:10px 30px;
+}
+/* @group button 各类按钮
+-----------------------------------------------------*/
+a.button{
+	display: inline-block;
+	cursor: pointer;
+	line-height: 19px;
+	/*margin-right: 5px;*/
+	padding:5px 12px;
+	text-decoration: none;
+	text-align: center;
+}
+/* @group input 输入框
+------------------------------------------------------*/
+.inputStyle{
+	/*background: none repeat scroll 0 center rgba(0, 0, 0, 0);*/
+	background:transparent;
+    border: 0 none;
+    color: #333;
+    /*font-family: "Microsoft YaHei",Verdana,Tahoma,Arial;*/
+    height: 18px;
+    /*ime-mode: disabled;*/   /*禁用文本框输入法*/
+    /*left: 2px;*/
+    line-height: 18px;
+    padding: 11px 0 11px 10px;
+    position: relative;
+    /*top: 2px;*/
+    width: 258px;
+}
+.inputTips,.inputTips_focus{
+	color: #aaa;
+    cursor: text;
+    font-size: 16px;
+    line-height: 16px;
+    position: absolute;
+    left: 13px;
+    top: 13px;
+}
+.inputTips_focus{
+	color: #ddd;
+}
+/* @group 复用模块
+=========================================================*/
+
+/** 【兼容性通用inline-block】
+ *在父容器添加类.dib-wrap
+ *在子容器添加类.dib
+--------------------------------------------------*/
+.dib-wrap {
+ font-size:0;/* 所有浏览器 */
+ *word-spacing:-1px;/* IE6、7 */
+ }
+ .dib-wrap .dib{
+ font-size: 13px;
+ letter-spacing: normal;
+ word-spacing: normal;
+ vertical-align:top;
+ }
+ @media screen and (-webkit-min-device-pixel-ratio:0){
+ /* firefox 中 letter-spacing 会导致脱离普通流的元素水平位移 */
+	 .dib-wrap{
+	 letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器, N 根据父级字体调节*/
+	 }
+ }
+ .dib {
+ display: inline-block;
+ *display:inline;
+ *zoom:1;
+ }
+/** 【分页处理】
+ *分别为第一个元素、最后一个元素以及当前选定元素添加.first/.last/.active
+--------------------------------------------*/
+.paginator{
+	display: block;
+	overflow: hidden;
+	margin: 15px 0 65px;
+}
+
+.paginator a{
+	padding: 5px 12px;
+	display: block;
+	font-size: 80%;
+	float: left;
+	border: 1px solid transparent;
+	background-position: center top;
+}
+.paginator a.first{background-position: right top;}
+.paginator a.last{background-position: left top;}
+
+/** 【CSS Sprite】
+--------------------------------------------------*/
+.i-edit,.i-time,.i-author,.i-comment,.i-forward,
+.i-recommend,.i-report,.i-sign,.i-edit,.i-delete,
+.i-upload,.i-write,.i-stickie{
+	padding: 2px;
+	height: 16px;
+	width: 16px;
+	background:url(../images/layout/shared/MyIcon.png) no-repeat;
+	text-indent: -999px;
+	text-align: left !important;
+	display: inline-block;
+}
+.i-time {background-position: 3px 3px;}
+.i-author{background-position: 3px -27px;}
+.i-comment {background-position: 3px -57px;}
+.i-forward {background-position: 3px -87px;}
+.i-recommend {background-position: 3px -117px;}
+.i-sign {background-position: 3px -177px;}
+.i-report {background-position: 3px -207px;}
+.i-edit {background-position: 3px -237px;}
+.i-delete{background-position: -27px -27px;}
+.i-write{background-position: -27px -87px;}
+.i-upload{background-position: -27px -117px;}
+.i-stickie{background-position: -27px -207px;}
+
+a.i-stickie:hover{background-position: -27px -177px;}
+
+a.i-edit:hover,a.i-time:hover,a.i-author:hover,a.i-comment:hover,a.i-forward:hover,
+a.i-recommend:hover,a.i-report:hover,a.i-sign:hover,a.i-edit:hover,a.i-delete:hover,
+a.i-upload:hover,a.i-write:hover,a.i-stickie:hover{
+	opacity: 0.6;
+	*filter:alpha(opacity:60);
+}
+
+
+/*特殊结构的CSS Sprite*/
+.i-s-add,.i-s-upload,.i-s-config{
+	padding: 2px;
+	height: 25px;
+	width: 25px;
+	background:url(../images/layout/shared/MyIcon.png) no-repeat;
+	text-indent: -999px;
+	display: inline-block;
+	opacity: 0.3;
+	*filter:alpha(opacity:30);
+}
+.i-s-add{width: 55px;background-position: -57px 3px;}
+.i-s-upload{background-position: -57px -87px;}
+.i-s-config{background-position: -57px -133px;}
+
+.i-s-add:hover{background-position: -57px -42px;}
+/* @group 弹出层样式
+==========================================================*/
+/* -----------------------登陆框样式----------------------*/
+
+.login_div{
+	/*height: 300px;*/
+	width: 418px;
+	display: block;
+	/*float: right;*/
+	border: 2px solid #e2e2e2;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+.login_head{
+	padding: 10px 20px 10px;
+	border-bottom: 1px solid #e2e2e2;
+}
+.login_body{
+	padding: 0 72px 50px;
+}
+.login_tips{
+	height: 50px;
+	position: relative;
+}
+.uinArea,.pwdArea{
+	height: 60px;
+	position: relative;
+	width: 272px;
+}
+.inputOuter{
+	border: 1px solid #e2e2e2;
+}
+.inputOuter_focus{
+	border: 1px solid #84cfff;
+}
+.login_foot{
+	margin-bottom: 8px;
+	right:5px;
+	position: relative;
+	text-align: right;
+}
+/*Login.html
+=================================*/
+#login{
+	float: right;
+	margin-top: 100px;
+}
+/* @group 默认容器布局
+==========================================================*/
+body{cursor: default;}
+
+/* wrapper
+----------------------------------------*/
+.wrapper{
+	display: block;
+	width: 940px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+/* backgroud
+----------------------------------------*/
+.lay_bg{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	z-index: -999;
+}
+.lay_bg_img{
+	position: absolute;
+}
+/* @group 顶部容器header
+-----------------------------------------------------------*/
+#header{height: 119px;overflow: hidden;}
+#header .wrapper{overflow: visible;}
+
+/*..............logo..............*/
+#header #logo{float: left;}
+#header #logo h2{
+	text-indent: -9999px;
+	margin: 15px 30px 15px 0;
+	padding: 0;
+	display: block;
+}
+#header #logo h2 a{
+	background-repeat: no-repeat;
+	display: block;
+	border: 2px solid transparent;
+	height: 89px;
+	width: 89px;
+}
+
+/*..............head-info...........*/
+#header #head-info{
+	float: left;
+	max-width: 250px !important;
+	height: 119px;
+	padding-top: 15px;
+}
+#header #head-info #blog-name{
+	height: 40px;/*应确保能容纳两行*/
+	margin-bottom: 12px;	
+	overflow: hidden;
+}
+#header #head-info #blog-name a{display: block;}
+#header #head-info #blog-name a:hover{
+	text-decoration: underline;
+}
+
+/*.............Navigation...............*/
+#header ul.nav{
+	float: right;
+	list-style: none;
+	padding: 0;
+	margin: 22px -15px 0 0;
+}
+#header ul.nav li{
+	background-position:center top;
+	background-repeat: repeat-x;
+	float: left;
+	padding: 0 15px 10px 0;
+	margin: 0;
+}
+
+#header ul.nav li.first{
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 40px;
+}
+#header ul.nav li.last{
+	background-position: right top;
+	background-repeat: no-repeat;
+	padding-right: 40px;
+}
+#header ul.nav li a{
+	display: block;
+	margin-top: 16px;
+	padding: 10px;
+}
+/* Superfish Auto-Arrows 隐藏为顶层节点添加的Arrows*/
+
+#header ul.nav li a .sf-sub-indicator {
+  display: none !important;
+}
+
+#header ul.nav li ul li a .sf-sub-indicator {
+  display: inline !important;
+}
+/*Dropdown Menu*/
+#header ul.nav li ul{
+	background-position: 20px top;
+	background-repeat: no-repeat;
+	list-style: none;
+	position: absolute;
+	margin-top: -6px;
+	padding: 5px 0 0 0;
+	z-index: 101;
+}
+#header ul.nav li ul li{
+	background-image: none;
+	float: none;
+	padding: 0;
+	position: relative;
+}
+#header ul.nav li ul li a{
+	border: 1px solid;
+	border-bottom: none;
+	height: auto;
+	opacity: .9;
+	*filter:alpha(opacity:90);/*IE fix*/
+	width: 150px;
+	margin: 0;
+	padding: 8px 8px;
+}
+#header ul.nav li ul li:last-child a{
+	border-bottom:  1px solid;
+}
+#header ul.nav li ul li ul{
+	background: none;
+	padding-top:0;
+	left: 100%; 
+	margin-left: -1px;
+	top: 0;
+	margin-top: 0px;
+}
+/*Dropdown Hover*/
+#header ul.nav li ul,
+#header ul.nav li:hover ul li ul {display: none;}
+
+#header ul.nav li:hover ul,
+#header ul.nav li ul li:hover ul{display: block;}
+/*Drop on the left*/
+#header ul.nav li.right ul li ul{left: -166px;padding: 0;}
+
+/* @group 上信息栏topbar
+---------------------------------------------------------*/
+#topbar{height: auto;overflow: hidden;}
+#topbar #top-info{
+	padding: 5px 0 5px 0;
+}
+/* @group 主容器main
+-----------------------------------------------------------*/
+#main{
+	position:relative;
+	overflow:hidden;
+	padding-top: 45px;
+	/*min-height: 450px;*/
+}
+/*........................Content.....................*/
+#content{
+	float: left;
+	overflow: hidden;
+	width: 610px;
+}
+
+#content .entry{
+	overflow: hidden;
+	clear: both;
+	padding-bottom: 20px;
+}
+/*post-box---------------------------*/
+#content .entry .post-box{
+	padding-top: 5px;
+	padding-bottom: 0;
+	margin: 0;
+}
+
+.post-box a img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 0; 
+	padding: 0;
+	position: relative;
+	z-index: 2;
+}
+
+.post-box span.prettyPhoto-image{
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 1;
+}
+
+.post-bar{
+	position: relative;
+	padding: 2px 6px;
+	font-size: 13px !important;
+	min-height: 10px;
+	overflow: hidden;
+}
+.post-bar span{
+	float: left;
+	margin-right: 10px;
+}
+.post-bar span span{margin-right: 3px;}
+
+.post-bar > a{
+	margin-left: 8px;
+	float: right;
+}
+
+.post-data{padding-top: 10px;}
+
+.post-data p{
+	line-height: 170%;
+}
+.post-data span.read-more {
+	display: block;
+	padding-top: 5px;
+	font-size: 12px;
+}
+
+/*评论与回复-----------------------*/
+#content #comments{
+	padding: 35px 0;
+	overflow: hidden;
+}
+#comments .comment-list{
+	margin:20px 0 30px 0;
+}
+#comments .comment-dom{
+	clear: both;
+	list-style: none;
+	margin-bottom: 10px;
+	padding: 20px;
+	overflow: hidden;
+}
+#comments .comment-dom .comment{
+	display: block;
+	overflow: hidden;
+}
+#comments .comment .gravatar{
+	float: left;
+	overflow: hidden;
+	width: 70px;
+	text-align: center;
+	margin-right: 20px;
+}
+
+#comments .comment .gravatar img{width: 70px;height: 70px;}
+
+#comments .comment .content{
+	float: right;
+	display: block;
+	width: 476px;
+}
+#comments .comment .content .comment-info{
+	margin-bottom: 10px;
+}
+
+#comments .comment .content .comment-info .target{display: none;}
+
+#comments .comment .content .text{display: block;}
+/*回复*/
+#comments .reply{overflow: hidden;text-align: right;}
+#comments .reply .reply-panel{
+	overflow: hidden;
+	text-align: right;
+	width: 100%;
+}
+#comments .reply .reply-text{
+	resize:none;
+	overflow: auto;
+	height: 120px;
+	width: 99%;
+}
+ #comments .reply a.button{
+	*margin-top: 10px;/*IE fix*/
+	padding: 2px 10px;
+} 
+
+#comments .comment-dom .reply .reply-panel{
+	margin-top: 5px;
+	display: none;
+}
+#comments .comment-dom .reply .reply-text{
+	width: 98%;
+}
+
+/*评论嵌套*/
+#comments .comment-list .comment-list{margin:10px 0 0 0;}
+
+#comments .comment-dom .comment-dom .gravatar{width: 49px;}
+#comments .comment-dom .comment-dom .gravatar img{width: 49px;height: 49px;}
+
+#comments .comment-dom .comment-dom .content{width: 453px;}
+#comments .comment-dom .comment-dom .content .comment-info .target{display: inline-block;}
+/*user-info----------------------*/
+#user-info{
+	margin-bottom: 45px;
+	padding: 20px;
+	min-height: 350px;
+}
+#user-info #base-info{
+	padding-top: 5px;
+	text-align: center;
+	width: 38%;
+	/*border: 1px solid black;*/
+	/*border-right: 1px solid transparent;*/
+	overflow: hidden;
+}
+#base-info .gravatar{
+	overflow: hidden;
+	width: 80px;
+	text-align: center;
+	margin:0 auto;
+}
+#base-info .logo{
+	width: 78px;height: 78px;
+	line-height: 78px;/*该值设置与height一致保持纵向居中*/
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid transparent;
+}
+
+#base-info .logo .cover{
+	display: none;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	left: 0;top: 0;
+	position: absolute;
+	z-index: 2;
+	filter: alpha(opacity=0);/*IE fix*/
+}
+#base-info .logo .cover:hover{opacity:0.6;filter: alpha(opacity=60);}
+#base-info .logo .covered{
+	width: 100%;
+	height: 100%;
+	left: 0;top: 0;
+	position: absolute;
+	z-index: 0;
+}
+#base-info #level-bar{
+	margin: 10px 0;
+	line-height: 17px;
+	height: 17px;
+	display:inline-block;
+}
+#level-bar .level{vertical-align: middle;}
+#level-bar .rate{
+	cursor: pointer;
+	vertical-align: middle;
+	position: relative;
+	width: 150px;
+	height: 100%;
+	padding: 2px;
+	border: 1px solid #cfcfcf;
+	display: inline-block;
+	text-align: left;
+}
+#level-bar .rate .rate-bg{
+	display: block;
+	height: 100%;
+	z-index: 1;
+}
+#level-bar .rate .rate-num{
+	display: block;
+	z-index: 2;
+	position: absolute;left:0;top:2px;
+	text-align: center;
+	width: 100%;
+}
+#base-info .recode{
+	padding: 15px 0;
+	margin: 10px 0;
+	overflow: none;
+}
+#base-info .recode div{
+	padding:0 15px;
+	margin: 0 auto;	
+	border-right: 1px solid transparent;
+	border-left: 1px solid transparent;
+}
+
+#base-info .recode .item{
+	font-size: 16px;
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+#base-info .recode span{font-size: 18px;}
+#base-info .recode .first{border-left: none;}
+#base-info .recode .last{border-right: none;}
+
+#base-info .ui-operation{
+	/*text-align: left;*/
+	margin: 15px 0;
+	/*display: inline-block;*/
+	/*width: 100px;*/
+	/*float: left;*/
+}
+#base-info .ui-operation span{
+	/*display: block;*/
+	font-size: 14px;
+	padding: 0 10px;
+	margin:1px 0;
+}
+
+#user-info #personal-info{
+	width: 61%;
+	text-align: left;
+	overflow: hidden;
+	vertical-align: top;
+	/*border: 1px solid black;*/
+}
+#personal-info #pi-title{
+	margin-left:  50px;
+	padding-bottom: 5px;
+	/*border:1px solid black;*/
+	border-bottom: 1px solid transparent;
+	text-align: left;
+	overflow: hidden;
+}
+#pi-title span{display: inline-block;}
+#pi-title #pi-change{
+	padding-left: 1em;
+	display: none;
+}
+
+#personal-info ul#pi-data{
+	padding-top: 15px;
+	margin-left:50px;
+	list-style: none;
+	border-top: 1px solid transparent;
+}
+#pi-data li{
+	margin-bottom: 8px;
+}
+#pi-data li .li-label{
+	display: inline-block;
+	width: 8em;
+}
+/*若是用户自己的信息页*/
+#user-info.self-info .ui-operation{display: none;}
+#user-info.self-info #pi-change{display: inline-block;}
+#user-info.self-info .logo .cover{display: block;}
+
+/*portfolio--------------------------*/
+/*Frist Title Style-.....*/
+#pf-title,#album-title,#atc-title{margin-bottom: 10px;}
+#pf-title a,#album-title a,#atc-title a{vertical-align: middle;}
+#pf-title > h2,#album-title >h2,#atc-title >h2{margin:0 10px 0 0;vertical-align: middle;}
+/*.......................*/
+#portfolio .portfolio-item{
+	margin-bottom: 40px;
+}
+#portfolio .portfolio-item div{vertical-align: middle;}
+
+#portfolio .pfi-title{
+	padding-bottom: 5px;
+	border-bottom: 1px solid transparent;
+}
+#portfolio .pfi-title a{vertical-align: bottom;margin: 0 5px;}
+
+#portfolio .portfolio-item .text{
+	min-height: 40px;
+	max-height: 80px;
+	padding: 10px 2px;
+	border-top: 1px solid transparent;
+	overflow:hidden;
+	text-align: right;
+}
+#portfolio .portfolio-item .text p{text-align: left;}
+#portfolio .portfolio-item .descr{
+
+	padding-left: 20px;
+	line-height: 150%;
+}
+#portfolio .descr li{}
+
+#portfolio .pfi-operation{
+	margin-top: 10px;
+}
+/*album----------------------*/
+#album .album-col{margin-bottom: 30px;}
+#album .album-item{vertical-align: top;}
+#album .album-item .text{
+	min-height: 30px;
+/*	max-height: 80px;*/
+/*	padding: 10px 2px;*/
+	overflow:hidden;
+}
+#album .abi-title{margin: 10px 0;}
+#album .abi-title a{vertical-align: bottom;}
+
+/*article------*/
+#atc-content ol{list-style: none;}
+
+#atc-menus ol{
+	padding: 3px 0;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+}
+/*#atc-menus li:hover{
+	font-weight: bold;
+	background-color: #ddd;
+}*/
+
+#atc-menus ol.first{border-top: none;}
+#atc-menus ol.last{border-bottom: none;}
+#atc-menus ol li{padding: 3px 0;}
+
+#atc-list .atcl-title{
+	padding-bottom: 10px;
+	border-bottom: 1px solid transparent;
+}
+#atc-list ol{border-top: 1px solid transparent;}
+
+#atc-list .atc-entry{
+	/*clear: both;*/
+	vertical-align: bottom;
+	float: right;
+	text-align: right;
+	padding: 5px 0;
+	margin: 3px 0;
+	/*margin-bottom: 5px;*/
+
+	width: 100%;
+}
+
+#atc-list span{vertical-align: bottom;}
+#atc-list .atce-title{
+	font-size: 14px;
+	float: left;
+	text-align: left;
+	max-width: 400px;
+	overflow: hidden;
+}
+
+/*........................Sidebar.....................*/
+#sidebar{
+	float: right;
+	width: 280px;
+}
+#sidebar h3{
+	margin-bottom: 22px;
+	padding: 0;
+}
+
+#sidebar .box{
+	margin-bottom: 35px;
+}
+/* Navigation for box */
+#sidebar .box ul.nav{
+	overflow: hidden;
+	*border-bottom: none;/*ie7 FIX*/
+}
+#sidebar .box  ul.nav{
+	list-style: none;
+}
+/*#sidebar .box .nav ul li{padding-left: 0;}*/
+#sidebar .box ul.nav li a{
+	background-position: 12px 16px;
+	background-repeat: no-repeat;
+	display: block;
+	padding: 9px 10px 9px 24px;
+	text-decoration: none;
+}
+#sidebar .box ul.nav li ul li a{
+	margin:0;
+	background-position: 1.8em 17px;
+	padding-left: 2.5em;
+}
+
+/* @group 下信息栏bottombar
+-----------------------------------------------------------*/
+#bottombar{}
+/* @group 底部容器footer
+----------------------------------------------------------*/
+#footer{
+	height: 30px;
+}
+
+
+/* @grop style
+==========================================================*/ 
+/* no-topbar--------------------------------------------*/
+body.no_topbar #topbar{display: none;}
+/* no-nav-----------------------------------------------*/
+body.no_nav #header ul.nav{display:none;}
+/* no-sidebar-------------------------------------------*/
+body.fullwidth #sidebar{display: none;}
+body.fullwidth #content{width: 100%;}

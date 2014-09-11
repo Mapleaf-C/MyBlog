@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!--配置上传的文件的大小50M  -->
+    <constant name="struts.multipart.maxSize" value="52428800"></constant>
+    
+    <!-- 解决Struts与CKfinder的 冲突 -->
+    <!-- 表示对符合此正则表达式的URL，Struts不进行过滤，仅传递 -->
+    <constant name="struts.action.excludePattern" value="/plugins/ckfinder.*"/>
+
+    <!--普通用户的配置  -->
+    <package name="default" namespace="/" extends="json-default" >	
+    
+    	<!--配置cookie检查的拦截器 ,自定义的拦截器，每次只要有请求带有.action，都会对其进行cookie检查,并且自行登录 -->
+		<interceptors>
+			<!-- 1、声明拦截器 --> 
+			<interceptor name="checkCookie" class="checkCookieInterceptor"></interceptor>
+			<interceptor name="checkLogin" class="checkLoginInterceptor"></interceptor>
+    		<interceptor-stack name="defaultStack"> 
+    			<!-- 参照上面的名字cookieCheck  -->
+    			<!-- 首先检查有木有cookie，有的话就自动登录，没有在检查权限  -->
+    			<interceptor-ref name="checkCookie"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+		</interceptors>
+		
+		<!-- 全局的Result配置 -->
+		<global-results>
+			<result name="input">/WEB-INF/jsp/source/error.jsp</result>
+		</global-results>
+					
+		<!--主页action  -->
+		<action name="index" class="homeAction" method="index">
+			<result name="index">/WEB-INF/jsp/source/sourceIndex.jsp</result>
+		</action>
+		
+		<!--用户的相关操作配置  -->
+		<action name="user_*" class="userAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">102400</param>
+			</interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="includeMethods">add</param>
+			</interceptor-ref>
+			<result name="invalid.token">/WEB-INF/jsp/source/error.jsp</result>
+			<result name="loginUI">/WEB-INF/jsp/source/login.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/source/register.jsp</result>
+			<result name="personalInfo">/WEB-INF/jsp/source/personalInfo.jsp</result>
+			<result name="exits" type="json">
+                <param name="root">result</param>
+            </result>     
+            <result name="checkNumberOk" type="json">
+            	<param name="root">jsnumber</param>
+            </result>
+           <result name="isLogin" type="json">
+           		<param name="root">result</param>
+           </result>
+           <result name="loginStatus" type="json">
+           		<param name="root">loginInfo</param>
+           </result>
+           <result name="update" type="json">
+           		<param name="root">updateInfo</param>
+           </result>
+           <result name="input" type="redirect">/error.jsp</result>
+           <result name="forget">/WEB-INF/jsp/source/forget.jsp</result>
+           <result type="json" name="updateImg">
+                <param name="contentType">
+                    text/html
+                </param>
+                <param name="root">updateInfo</param>
+            </result>
+            <result name="error">/WEB-INF/jsp/source/error.jsp</result>
+            <result name="active">/WEB-INF/jsp/source/registerOk.jsp</result>
+            <result name="confirm">/WEB-INF/jsp/source/confirm.jsp</result>
+           <result name="updateUI">/WEB-INF/jsp/source/member.jsp</result>
+           <result name="logout" type="redirectAction">user_loginUI</result>
+           <result name="toIndex" type="redirectAction">index</result>
+           <result name="tologinUI" type="redirectAction">user_loginUI</result>
+           <result name="toaddUI" type="redirectAction">user_addUI</result>
+		</action>
+		
+		<!--资源的配置-->
+		<action name="source_*" class="sourceAction" method="{1}">
+			<interceptor-ref name="defaultStack">
+				<!--zip和rar文件限制在30M  -->
+				<param name="fileUpload.maximumSize">31457280</param>
+			</interceptor-ref>
+			<result name="uploadUI">/WEB-INF/jsp/source/sourceUpload.jsp</result>
+			<result name="upload" type="redirectAction">user_personalInfo</result>
+            <result name="list">/WEB-INF/jsp/source/sourceList.jsp</result>
+            <result name="detail">/WEB-INF/jsp/source/sourceDetail.jsp</result>
+			<result name="loginUI" type="redirectAction">user_loginUI</result>
+			<result name="download" type="stream">
+				<!--发送给Web浏览器的数据流的MIME类型(默认是text/plain)，即下载文件内容类型 -->
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="input">/WEB-INF/jsp/source/error.jsp</result>
+			<result name="search">/WEB-INF/jsp/source/sourceResult.jsp</result>
+		</action>
+		
+		<!--竞赛action配置  -->
+		<action name="competition_*" class="competitionAction" method="{1}">
+			<result name="listStart">/WEB-INF/jsp/source/competitionList.jsp</result>
+			<result name="detail">/WEB-INF/jsp/source/competitionDetail.jsp</result>
+			<result name="attendUI">/WEB-INF/jsp/source/attendUI.jsp</result>
+			<result name="existsUser" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<!--竞赛作品action配置  -->
+		<action name="soft_*" class="softAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/source/softList.jsp</result>
+			<result name="detail">/WEB-INF/jsp/source/softDetail.jsp</result>
+			<result name="toPersonInfo" type="redirectAction">user_personalInfo?id=${userId}</result>
+			<result name="toLoginUI" type="redirectAction">user_loginUI</result>
+			<result name="toDetail" type="redirectAction">soft_detail?id=${id}</result>
+			<result name="download" type="stream">
+				<!--发送给Web浏览器的数据流的MIME类型(默认是text/plain)，即下载文件内容类型 -->
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+    </package>
+    <!--普通用户的配置  -->
+    
+    <!--管理配置  -->
+    <package name="admin" namespace="/admin" extends="json-default">
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/admin/user/list.jsp</result>
+    		<result name="toList" type="redirectAction">user_list?pageNum=${pageNum}</result>
+    		<result name="detail">/WEB-INF/jsp/admin/user/info.jsp</result>
+    	</action>
+    
+    	<action name="home_*" class="adminHomeAction" method="{1}">
+    		<result name="index">/WEB-INF/jsp/admin/index.jsp</result>
+    		<result name="top">/WEB-INF/jsp/admin/top.jsp</result>
+    		<result name="left">/WEB-INF/jsp/admin/left.jsp</result>
+    		<result name="right">/WEB-INF/jsp/admin/right.html</result>
+    		<result name="bottom">/WEB-INF/jsp/admin/bottom.jsp</result>
+    		<result name="login">/WEB-INF/jsp/admin/login.jsp</result>
+    	</action>
+    	
+    	<action name="competition_*" class="competitionAction" method="{1}">
+    		<result name="saveUI">/WEB-INF/jsp/admin/competition/saveUI.jsp</result>
+    		<result name="toListStart" type="redirectAction">competition_listStart</result>
+    		<result name="listStart">/WEB-INF/jsp/admin/competition/list_start.jsp</result>
+    		<result name="listEnd">/WEB-INF/jsp/admin/competition/list_end.jsp</result>
+    		<result name="detail">/WEB-INF/jsp/admin/competition/detail.jsp</result>
+    	</action>
+    	
+    	<action name="source_*" class="sourceAction" method="{1}">
+    		<result name="listOk">/WEB-INF/jsp/admin/source/list_ok.jsp</result>
+    		<result name="listUnchecked">/WEB-INF/jsp/admin/source/list_unchecked.jsp</result>
+    		<result name="detail">/WEB-INF/jsp/admin/source/detail.jsp</result>
+    		<result name="toListOk" type="redirectAction">source_listOk?pageNum=${pageNum}</result>
+    		<result name="toListUnchecked" type="redirectAction">source_listUnchecked?pageNum=${pageNum}</result>
+    		<result name="download" type="stream">
+				<!--发送给Web浏览器的数据流的MIME类型(默认是text/plain)，即下载文件内容类型 -->
+				<param name="contentType">text/plain</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileFileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="editUI">/WEB-INF/jsp/admin/source/edit.jsp</result>
+    	</action>
+    	
+    	<action name="label_*" class="labelAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/admin/source/labelList.jsp</result>
+    		<result name="toList" type="redirectAction">label_list?pageNum=${pageNum}</result>
+    		<result name="saveUI">/WEB-INF/jsp/admin/source/labelSaveUI.jsp</result>
+    		<result name="exists" type="json">
+            	<param name="root">result</param>
+            </result>
+    	</action>
+    	
+    	<action name="language_*" class="progLanguageAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/admin/source/languageList.jsp</result>
+    		<result name="toList" type="redirectAction">language_list?pageNum=${pageNum}</result>
+    		<result name="saveUI">/WEB-INF/jsp/admin/source/languageSaveUI.jsp</result>
+    		<result name="exists" type="json">
+            	<param name="root">result</param>
+            </result>
+    	</action>
+    </package>
+    <!--管理配置  -->
+    
+    <!--验证码  -->
+    <package name="security" namespace="/security" extends="struts-default">
+    	<action name="securityCodeImageAction" class="securityCodeImageAction">
+    		<result name="success" type="stream">
+    			<param name="contentType">image/jpeg</param>
+    			<param name="inputName">imageStream</param>
+    			<param name="bufferSize">2048</param>
+    		</result>
+    	</action>
+    </package>
+     <!--验证码  -->
+     
+     <!--发送邮箱  -->
+   	 <package name="e-mail" namespace="/e-mail" extends="json-default">
+   	 	<action name="mail_*" class="mailAction" method="{1}">
+   	 		<result type="json" name="exits">
+   	 			<param name="root">result</param>
+   	 		</result>
+   	 		<!--留着慢慢优化检测邮箱不存在的,或者发送错误的消息  -->
+   	 		<result type="json" name="resend">
+   	 			<param name="root">result</param>
+   	 		</result>
+   	 		<result name="error">/WEB-INF/jsp/source/error.jsp</result>
+   	 		<result name="sendPassMail" type="json">
+   	 			<param name="root">result</param>
+   	 		</result>
+   	 	</action>
+   	 </package>
+     <!--发送邮箱  -->
+     
+     <!--ckeditor上传图片  -->
+     <package name="ck" namespace="/ck"  extends="struts-default">
+     	<action name="ck_img" class="ckeditorImg">
+     		<result>/index.jsp</result>
+     	</action>
+     	<action name="ck_adminImg" class="ckeditorImg" method="adminImg">
+     		<result>/index.jsp</result>
+     	</action>
+     </package>
+     <!--ckeditor上传图片  -->
+</struts>
+
