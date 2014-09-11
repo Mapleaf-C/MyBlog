@@ -12,10 +12,10 @@
 		org.hibernate.dialect.MySQL5InnoDBDialect
 	</property>
 	<!-- 
-		<property name="connection.url">jdbc:mysql:///itcastoa0720</property>
+		<property name="connection.url">jdbc:mysql:///MyBlog</property>
 		<property name="connection.driver_class">com.jdbc.mysql.Driver</property>
-		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.username">Mapleaf_Blog</property>
+		<property name="connection.password">123456</property>
 	-->
 
 	<!-- 2，其他配置 -->
