@@ -11,8 +11,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL_version5.1.5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Tomcat_version8.0.0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Sturts_version2.3.16.3"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate_version3.6.10"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring_version3.2.9"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

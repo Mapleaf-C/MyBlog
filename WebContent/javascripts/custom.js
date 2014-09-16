@@ -90,7 +90,7 @@ $(document).ready(function(){
 		var outer = $(this).parent(".inputOuter");
 		var lab = outer.siblings(".inputTips");
 		lab.removeClass("inputTips");
-		lab.addClass("inputTips_focus")
+		lab.addClass("inputTips_focus");
 		outer.removeClass("inputOuter");
 		outer.addClass("inputOuter_focus");
 	});
@@ -99,27 +99,27 @@ $(document).ready(function(){
 		var lab = outer.siblings(".inputTips_focus");
 		var text = $(this).attr("value");
 		lab.removeClass("inputTips_focus");
-		lab.addClass("inputTips")
+		lab.addClass("inputTips");
 		outer.removeClass("inputOuter_focus");
 		outer.addClass("inputOuter");
 		if(text== null|| text=="") lab.css("display","block");
 	});
 	$(".inputOuter_focus .inputStyle").live("keydown",function(){
 		var outer = $(this).parent(".inputOuter_focus");
-		var lab =　outer.siblings(".inputTips_focus");
+		var lab = outer.siblings(".inputTips_focus");
 		lab.css("display","none");
 	});
   	$(".inputStyle").live("keyup",function(){
   		var outer = $(this).parent();
-		var lab =　outer.siblings();
+		var lab = outer.siblings();
 		var text = $(this).attr("value");
 		if(text== null|| text=="") lab.css("display","block");
 	});
 	/*@group Animate
 	===========================================*/
 	$("a[class^='i-s-']").hover(
-		function(){$(this).stop().animate({opacity:1},200)},
-		function(){$(this).stop().animate({opacity:0.3},200)}
+		function(){$(this).stop().animate({opacity:1},200);},
+		function(){$(this).stop().animate({opacity:0.3},200);}
 	);
 	// $(".lay_bg").resizeBackground();
 
@@ -151,7 +151,7 @@ $(document).ready(function(){
 			var imgLeft = (cw - new_w) /2;
 			bg_img.css({"width":new_w,"height":ch,"top":"","left":imgLeft});
 		}
-	}
+	};
 	//Drop_on_the_left对于靠右的节点，将下拉菜单显示在左边
 	$.fn.drop_on_the_leaf = function(options){
 		var defaults = {
@@ -171,7 +171,7 @@ $(document).ready(function(){
 		var defaults = {
 			animation_speed :120,
 			animation_distance:5
-		}
+		};
 		var options = $.extend(defaults,options);
 		return this.each(function(){
 		  	var pl = $(this).css("padding-left");
@@ -198,23 +198,26 @@ $(document).ready(function(){
 		var defaults = {
 			opacity:0.5,
 			animate_speed:200,
-			class_name:'prettyPhoto-image'
+			class_name:"prettyPhoto-image"
 		};
 		var options = $.extend(defaults,options);
 		return this.each(function(){
 			var img = $(this);//标记使用prettyPhoto的图片
 			var link = $(this).parent();//图片所属的a标签
 			//在a标签的末尾插入一个span
-			var bg = $("<span class='"+options.class_name+"'<span>").appendTo(link);
-			link.bind('mouseenter',function(){//设置该span覆盖原图片
+//			var bg = $("<span class=\""+options.class_name+"\"</span>");	
+			var bg = $("<span class= 'prettyPhoto-image'></span>");	
+			link.append(bg);
+			link.bind("mouseenter",function(){//设置该span覆盖原图片
 				var width = img.width();
 				var height = img.height();
 				var position = img.position();
+				// $(this).append(bg);
 				bg.css({"width":width,"height":height,"top":position.top,"left":position.left});
-			})
+			});
 			$(this).hover(
 				function(){img.stop().animate({opacity:options.opacity},options.animate_speed);},
-				function(){img.stop().animate({opacity:1},options.animate_speed)}
+				function(){img.stop().animate({opacity:1},options.animate_speed);}
 			);
 		});
 	};
@@ -231,7 +234,7 @@ $(document).ready(function(){
 			$(".reply-panel"+"."+options.class_name).removeClass(options.class_name).slideUp(options.slide_speed);	
 			if(flag){
 				panel.addClass(options.class_name).slideDown(options.slide_speed);
-			}								
+			}
 		});
 	};
 	//pb_addItem post-bar动态展示
@@ -259,8 +262,7 @@ $(document).ready(function(){
 			}
 			bar.append(label);
 		});
-
-	}
+	};
 	//edit_action1 定焦target目标进行编辑 失焦后保存为文本
 	//*Uncaught SyntaxError
 	$.fn.edit_action1 = function(options){

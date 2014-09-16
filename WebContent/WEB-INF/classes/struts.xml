@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
 <struts>
 	<!-- 配置为开发模式 -->
     <constant name="struts.devMode" value="true" />
     <!-- 把扩展名配置为action -->
-    <constant name="struts.action.extension" value="do" />
+    <constant name="struts.action.extension" value="action" />
     <!-- 把主题配置为simple -->
     <constant name="struts.ui.theme" value="simple" />
     <!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
     <constant name="struts.serve.static.browserCache" value="false" />
-	
 </struts>
 
