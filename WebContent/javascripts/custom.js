@@ -334,7 +334,7 @@ $(document).ready(function(){
 				var newtxt = $(this).attr("value");
 				if(newtxt != txt){
 					newtxt=newtxt.replace(/\s+/g,"");
-					if(newtxt == null||newtxt == "") {
+					if(newtxt == null||newtxt == ""){
 						if(options.empty){
 							newtxt = options.empty_string;
 						}
